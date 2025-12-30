@@ -1,0 +1,121 @@
+# Jointhubs .gitignore
+
+# ======================
+# CREDENTIALS - NEVER COMMIT
+# ======================
+client.json
+credentials.json
+token.json
+*.pem
+*.key
+*.p12
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.production
+
+# VS Code MCP config (contains secrets)
+.vscode/mcp.json
+.vscode/settings.json
+
+# ======================
+# PERSONAL/TEMPORARY FILES
+# ======================
+tmp/
+tasks/
+tasks.md
+*.personal.md
+
+# Planning documents (personal)
+*plan*.md
+!README.md
+
+# ======================
+# VAULT CONTENT (keep structure, ignore personal notes)
+# ======================
+
+# Operations - keep folder structure, ignore actual notes
+Operations/Periodic Notes/Daily/*.md
+!Operations/Periodic Notes/Daily/README.md
+Operations/Periodic Notes/Weekly/*.md
+!Operations/Periodic Notes/Weekly/README.md
+Operations/Periodic Notes/Monthly/*.md
+Operations/Periodic Notes/Quarterly/*.md
+Operations/Meetings/*.md
+!Operations/Meetings/README.md
+
+# Personal - ignore all content (contains sensitive data)
+Personal/Health/*.md
+!Personal/Health/README.md
+Personal/Finances/*.md
+!Personal/Finances/README.md
+Personal/Events/*.md
+!Personal/Events/README.md
+Personal/Classes/*.md
+!Personal/Classes/README.md
+
+# Projects - ignore project content
+Projects/**/*.md
+
+# Keep README files for structure documentation
+!**/README.md
+
+# ======================
+# DEPENDENCIES
+# ======================
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ======================
+# EDITORS & OS
+# ======================
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/mcp.json.example
+
+# Obsidian - keep config for consistent experience
+# .obsidian/ is NOT ignored - we want to share plugin configs
+
+# JetBrains
+.idea/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ======================
+# BUILD & LOGS
+# ======================
+*.log
+logs/
+dist/
+build/
+*.egg-info/

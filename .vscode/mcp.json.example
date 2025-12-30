@@ -1,0 +1,22 @@
+{
+  "servers": {
+    "googleWorkspace": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["workspace-mcp", "--tool-tier", "core"],
+      "env": {
+        "GOOGLE_OAUTH_CLIENT_ID": "YOUR_CLIENT_ID.apps.googleusercontent.com",
+        "GOOGLE_OAUTH_CLIENT_SECRET": "YOUR_CLIENT_SECRET",
+        "OAUTHLIB_INSECURE_TRANSPORT": "1"
+      }
+    },
+    "discord": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "discord-mcp-mod"],
+      "env": {
+        "DISCORD_TOKEN": "YOUR_DISCORD_BOT_TOKEN"
+      }
+    }
+  }
+}
