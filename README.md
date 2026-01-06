@@ -1,4 +1,4 @@
-# Jointhubs
+# Jointhubs Open Source Operating System
 
 <p align="center">
   <img src="assets/jointhubs.png" alt="Jointhubs" width="600">
