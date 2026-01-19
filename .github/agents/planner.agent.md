@@ -107,11 +107,10 @@ Focus blocks: `🎯 Deep Work: {topic}` (set as Busy)
 
 ## Skills You Reference
 
-- `.github/skills/obsidian-vault.md` — Tags, frontmatter, wiki links
+- `.github/skills/session-rituals.md` — Planning & review sessions
 - `.github/skills/daily-log.md` — Daily log conventions
+- `.github/skills/project-lifecycle.md` — Project state management
 - `.github/skills/focus-support.md` — Focus patterns
-- `.github/skills/weekly-review.md` — Review process
-- `.github/skills/goal-tracking.md` — Long-term alignment
 
 ## Handoffs
 

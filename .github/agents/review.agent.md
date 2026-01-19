@@ -77,7 +77,8 @@ First of each month: project progress table, themes, lessons, adjustments.
 
 ## Skills You Reference
 
-- `.github/skills/obsidian-vault.md` — Tags, frontmatter, wiki links
+- `.github/skills/session-rituals.md` — Planning & review sessions
+- `.github/skills/weekly-review.md` — Weekly review process
 - `.github/skills/daily-log.md` — Daily log conventions
 - `.github/skills/weekly-review.md` — Review process details
 - `.github/skills/goal-tracking.md` — Long-term alignment
