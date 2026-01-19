@@ -175,7 +175,16 @@ Agents should feel like **competent humans**:
 
 ## 📚 Skills
 
-Domain knowledge in `.github/skills/`: `obsidian-vault`, `daily-log`, `project-lifecycle`, `focus-support`, `weekly-review`, `goal-tracking`, `discord-integration`.
+Skills are folders in `.github/skills/` with `SKILL.md` files. They load on-demand based on trigger phrases.
+
+| Skill | Triggers |
+|-------|----------|
+| `daily-log/` | "daily log", "session start" |
+| `weekly-review/` | "weekly review", "Friday review" |
+| `project-context/` | "CONTEXT.md", "project status" |
+| `session-rituals/` | "planning session", "kickoff" |
+| `obsidian-vault/` | "file naming", "frontmatter" |
+| `focus-support/` | "can't focus", "deep work" |
 
 ---
 

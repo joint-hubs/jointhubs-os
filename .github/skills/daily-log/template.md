@@ -67,7 +67,3 @@ sort file.ctime desc
 
 ## Links
 Prev: [[<% tp.date.now("YYYY-MM-DD", -1, tp.file.title, "YYYY-MM-DD") %>]] | Next: [[<% tp.date.now("YYYY-MM-DD", 1, tp.file.title, "YYYY-MM-DD") %>]] | Week: [[<% tp.date.now("YYYY-[W]W", 0, tp.file.title, "YYYY-MM-DD") %>]]
-
-
-
-

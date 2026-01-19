@@ -68,8 +68,7 @@ You are **{Agent Name}** — {one sentence describing your role and perspective}
 
 ## Skills You Reference
 
-- `.github/skills/{relevant-skill}.md` — {Why}
-- `.github/skills/{another-skill}.md` — {Why}
+- `.github/skills/{skill-name}/` — {Why}
 
 ## Handoffs
 

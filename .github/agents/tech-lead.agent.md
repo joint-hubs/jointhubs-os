@@ -96,10 +96,9 @@ Commit format: `{project}: {description}`
 
 ## Skills You Reference
 
-- `.github/skills/obsidian-vault.md` — Tags, frontmatter, wiki links
-- `.github/skills/project-lifecycle.md` — How projects flow
-- `.github/skills/daily-log.md` — Daily log conventions
-- Project-specific CONTEXT.md — Current state
+- `.github/skills/project-context/` — Project state management
+- `.github/skills/daily-log/` — Daily log conventions
+- `.github/skills/obsidian-vault/` — Vault conventions
 
 ## Handoffs
 

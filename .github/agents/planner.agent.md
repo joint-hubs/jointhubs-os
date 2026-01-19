@@ -107,10 +107,10 @@ Focus blocks: `🎯 Deep Work: {topic}` (set as Busy)
 
 ## Skills You Reference
 
-- `.github/skills/session-rituals.md` — Planning & review sessions
-- `.github/skills/daily-log.md` — Daily log conventions
-- `.github/skills/project-lifecycle.md` — Project state management
-- `.github/skills/focus-support.md` — Focus patterns
+- `.github/skills/session-rituals/` — Planning & review sessions
+- `.github/skills/daily-log/` — Daily log conventions
+- `.github/skills/project-context/` — Project state management
+- `.github/skills/focus-support/` — Focus patterns
 
 ## Handoffs
 

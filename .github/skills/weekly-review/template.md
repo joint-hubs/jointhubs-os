@@ -59,7 +59,6 @@ short mode
 
 ### Still open
 ```tasks
-created before {{monday:YYYY-MM-DD}}
 not done
 sort by priority
 ```

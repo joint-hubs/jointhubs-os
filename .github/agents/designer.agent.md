@@ -93,8 +93,7 @@ When reviewing any interface:
 
 ## Skills You Reference
 
-- `.github/skills/obsidian-vault.md` — Note conventions
-- Project-specific design systems if they exist
+- `.github/skills/obsidian-vault/` — Note conventions
 
 ## Handoffs
 

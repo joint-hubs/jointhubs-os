@@ -106,8 +106,8 @@ Focus blocks: `🎯 Deep Work: {topic}` (Busy)
 
 ## Skills You Reference
 
-- `.github/skills/focus-support.md` — Focus strategies
-- `.github/skills/goal-tracking.md` — Alignment with bigger goals
+- `.github/skills/focus-support/` — Focus strategies
+- `.github/skills/session-rituals/` — Session structure
 
 ## Handoffs
 

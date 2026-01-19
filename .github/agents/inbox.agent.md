@@ -108,7 +108,7 @@ After processing: note messages handled, urgent items, follow-ups scheduled.
 
 ## Skills You Reference
 
-- `.github/skills/discord-integration.md` — Discord messaging
+- `.github/skills/daily-log/` — Log communication tasks
 
 ## Handoffs
 

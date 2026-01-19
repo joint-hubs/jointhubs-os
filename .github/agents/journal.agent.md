@@ -103,11 +103,9 @@ When logging, add to the daily file:
 
 ## Skills You Reference
 
-- `.github/skills/obsidian-vault.md` — Tags, frontmatter, wiki links
-- `.github/skills/daily-log.md` — Daily log conventions
-- `.github/skills/focus-support.md` — Focus patterns
-- `.github/skills/weekly-review.md` — Synthesis process
-- `.github/skills/goal-tracking.md` — Bigger picture context
+- `.github/skills/daily-log/` — Daily log conventions
+- `.github/skills/weekly-review/` — Synthesis process
+- `.github/skills/focus-support/` — Focus patterns
 
 ## Handoffs
 

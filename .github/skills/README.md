@@ -1,74 +1,63 @@
 # Skills Directory
 
-Skills are domain knowledge documents that agents reference for specialized guidance.
-
-## What is a Skill?
-
-A skill contains:
-- **Domain knowledge** — How to do something
-- **Templates** — Reusable patterns
-- **Principles** — Guiding rules
-- **Examples** — Concrete illustrations
-
-Unlike agents (who have personality), skills are reference materials.
+Agent Skills are folders of instructions and resources that AI agents load on-demand.
 
 ## Available Skills
 
-| Skill | Purpose | Used By |
-|-------|---------|---------|
-| **[obsidian-vault.md](obsidian-vault.md)** | Frontmatter, tags, wiki links, file conventions | All agents |
-| **[daily-log.md](daily-log.md)** | Daily logging conventions | All agents |
-| **[project-lifecycle.md](project-lifecycle.md)** | How projects move from idea to done | Tech Lead, Planner |
-| **[focus-support.md](focus-support.md)** | Focus strategies and flow states | DeepWork, Planner, Journal |
-| **[weekly-review.md](weekly-review.md)** | Review process and templates | Review, Journal |
-| **[goal-tracking.md](goal-tracking.md)** | Goal management patterns | Planner, Review |
-| **[discord-integration.md](discord-integration.md)** | Discord MCP usage | Inbox, DeepWork |
+| Skill | Purpose | Trigger Phrases |
+|-------|---------|-----------------|
+| [daily-log](daily-log/) | Daily note as agent memory | "daily log", "session start" |
+| [weekly-review](weekly-review/) | Weekly reflection process | "weekly review", "Friday review" |
+| [project-context](project-context/) | Project state management | "CONTEXT.md", "project status" |
+| [session-rituals](session-rituals/) | Planning & review sessions | "planning session", "kickoff" |
+| [obsidian-vault](obsidian-vault/) | Vault conventions | "file naming", "frontmatter" |
+| [focus-support](focus-support/) | Focus and deep work | "can't focus", "deep work" |
 
-## How Agents Use Skills
+## How Skills Work
 
-Agents reference skills when they need domain knowledge:
+Skills use **progressive disclosure**:
 
-```markdown
-## Skills You Reference
-- `.github/skills/focus-support.md` — Focus patterns
-- `.github/skills/weekly-review.md` — Review process
+1. **Discovery** — Agent reads `name` and `description` from SKILL.md frontmatter
+2. **Loading** — When relevant, full SKILL.md loads into context
+3. **Resources** — Templates and scripts load only when referenced
+
+This means many skills with minimal context cost.
+
+## Skill Structure
+
+```
+skill-name/
+├── SKILL.md          # Required: metadata + instructions
+├── template.md       # Optional: Templater template
+├── scripts/          # Optional: automation scripts
+└── examples/         # Optional: example files
 ```
 
-Skills are not personality — they're knowledge.
+## Creating Skills
 
-## Creating New Skills
+1. Create folder: `.github/skills/{skill-name}/`
+2. Add `SKILL.md` with frontmatter:
 
-1. Create `{skill-name}.md` in this directory
-2. Structure with clear sections
-3. Add to this README
-4. Reference from relevant agents
+```yaml
+---
+name: skill-name
+description: |
+  What this skill does.
+  Use when: "trigger phrase 1", "trigger phrase 2".
+---
+```
 
-### Skill Template
-
-```markdown
-# Skill Name
-
-## Purpose
-
-[What this skill is for]
-
-## Key Concepts
-
-[Core ideas]
+3. Add instructions in the body
+4. Add resources (templates, scripts) as needed
+5. Update this README
 
 ## Templates
 
-[Reusable patterns]
+Skills can include Templater templates as resources.
 
-## Principles
-
-[Guiding rules]
-
-## Examples
-
-[Concrete illustrations]
+Templates are in the skill folder and symlinked/copied to `Templater/` for Obsidian use.
 
 ## Related
 
-- [Other skills or resources]
-```
+- [Agent Skills Spec](https://agentskills.io/)
+- [VS Code Skills Docs](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
