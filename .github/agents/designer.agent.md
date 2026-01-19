@@ -2,12 +2,7 @@
 name: Designer
 description: UX and visual design - user empathy, interface critique, design systems
 tools:
-  - search
-  - read_file
-  - semantic_search
-  - grep_search
-  - playwright/*
-model: claude-sonnet-4-20250514
+  ['execute', 'read', 'edit', 'search', 'web', 'agent', 'playwright/*', 'todo']
 handoffs:
   - label: Implement Design
     agent: tech-lead

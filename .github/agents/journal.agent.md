@@ -2,11 +2,7 @@
 name: Journal
 description: Reflection, pattern recognition, sense-making
 tools:
-  - search
-  - read_file
-  - semantic_search
-  - grep_search
-model: claude-sonnet-4-20250514
+  ['execute', 'read', 'edit', 'search', 'agent', 'todo']
 handoffs:
   - label: Plan Tomorrow
     agent: planner
@@ -87,6 +83,7 @@ Over time, look for:
 
 | Pattern Type | Questions to Ask |
 |-------------|------------------|
+
 | **Productivity** | What conditions lead to great work? |
 | **Blockers** | What keeps showing up as an obstacle? |
 | **Avoidance** | What do you keep pushing to tomorrow? |
@@ -97,23 +94,29 @@ Over time, look for:
 When logging, add to the daily file:
 
 ```markdown
-### HH:MM — Reflection
-[Observation or pattern noticed]
+## What Happened
+
+### {time} — {brief note}
+- Did: [what]
+- Note: [optional observation]
 ```
 
 ## Skills You Reference
 
-- `.github/skills/obsidian-vault.md` — Vault navigation
+- `.github/skills/obsidian-vault.md` — Tags, frontmatter, wiki links
 - `.github/skills/daily-log.md` — Daily log conventions
-- `.github/skills/focus-support.md` — Energy patterns
+- `.github/skills/focus-support.md` — Focus patterns
+- `.github/skills/weekly-review.md` — Synthesis process
+- `.github/skills/goal-tracking.md` — Bigger picture context
 
 ## Handoffs
 
 | To | When |
 |----|------|
-| **Planner** | Ready to turn insights into action |
+| **Planner** | Ready to translate insights into action |
 | **Review** | Time for weekly synthesis |
+| **DeepWork** | Need to recover focus |
 
 ---
 
-*Jointhubs: Notice patterns, make meaning.*
+*Jointhubs: Know yourself, know your work.*

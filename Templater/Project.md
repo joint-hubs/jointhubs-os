@@ -5,6 +5,7 @@ priority: P2
 started: <% tp.date.now("YYYY-MM-DD") %>
 tags:
   - project
+  - type/project
 type: project
 ---
 
@@ -12,45 +13,32 @@ type: project
 
 > One-line description of what this project is
 
-## 📌 Status
+## Overview
 
-| Field | Value |
-|-------|-------|
-| Status | 🟡 Active |
-| Priority | P2 |
-| Started | <% tp.date.now("YYYY-MM-DD") %> |
-| Target | |
-| Owner | |
+[2-3 sentences explaining the project's purpose and scope]
 
----
+## Quick Start
 
-## 🎯 Goal
-> What does success look like?
+[How to get started with this project]
 
-## 📋 Key Milestones
+## Status
 
-- [ ] Milestone 1
-- [ ] Milestone 2
-- [ ] Milestone 3
+See [CONTEXT.md](CONTEXT.md) for current state.
+
+## Structure
+
+```
+<% tp.file.title %>/
+├── README.md       ← You are here
+├── CONTEXT.md      ← Past/Current/Future state
+└── tasks/          ← Task breakdown
+```
 
 ## 🔗 Links
 
 - Repo: 
 - Docs: 
 - Related: 
-
----
-
-## 📝 Notes
-
-### Latest Updates
-
-
-### Decisions Made
-
-| Date | Decision | Rationale |
-|------|----------|-----------|
-| | | |
 
 ---
 

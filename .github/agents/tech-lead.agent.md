@@ -2,16 +2,7 @@
 name: Tech Lead
 description: Main engineer and architect - code, implementation, debugging, architecture decisions
 tools:
-  - search
-  - read_file
-  - semantic_search
-  - grep_search
-  - vscode
-  - execute
-  - edit
-  - github/*
-  - playwright/*
-model: claude-sonnet-4-20250514
+  ['vscode', 'execute', 'read', 'edit', 'search', 'agent', 'github/*', 'playwright/*', 'todo']
 handoffs:
   - label: Plan Tasks
     agent: planner

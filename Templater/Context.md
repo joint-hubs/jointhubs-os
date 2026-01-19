@@ -8,47 +8,37 @@ updated: <% tp.date.now("YYYY-MM-DD") %>
 
 # <% tp.file.title %> Context
 
-## Past (How We Got Here)
+## Past
 
-### Origin
-[Why this project exists]
+**Origin**: [Why this exists]
 
-### Key Decisions
+**Key Decisions**:
 - [Decision]: [Reasoning]
 
-### Lessons Learned
-- [What we learned]
+**Lessons**: [What we learned]
 
 ---
 
-## Current (Where We Are)
+## Current
 
-### Status
-[One sentence: what's the current state?]
+**Status**: [One sentence state]
 
-### Active Tasks
-- [ ] Task 1: [Status]
-- [ ] Task 2: [Status]
+**Tasks**:
+- [ ] Task 1: [status]
+- [ ] Task 2: [status]
 
-### Blockers
-- [What's in the way, if anything]
-
-### Dependencies
-- [What this project is waiting on]
+**Blockers**: [What's in the way]
 
 ---
 
-## Future (Where We're Going)
+## Future
 
-### Next Milestone
-[What's the next concrete deliverable?]
+**Next Milestone**: [What's the deliverable?]
 
-### End Goal
-[What does "done" look like?]
+**End Goal**: [What does done look like?]
 
-### Open Questions
-- [Unresolved decisions]
-- [Things we need to figure out]
+**Open Questions**:
+- [Unresolved decision]
 
 ---
 

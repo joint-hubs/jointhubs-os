@@ -2,11 +2,7 @@
 name: Review
 description: Weekly synthesis, retrospectives, connecting dots across time
 tools:
-  - search
-  - read_file
-  - semantic_search
-  - grep_search
-model: claude-sonnet-4-20250514
+  ['execute', 'read', 'edit', 'search', 'agent', 'github/*', 'todo']
 handoffs:
   - label: Plan Next Week
     agent: planner
