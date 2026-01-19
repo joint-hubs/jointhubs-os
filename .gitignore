@@ -31,6 +31,7 @@ tasks.md
 # Planning documents (personal)
 *plan*.md
 !README.md
+!.github/agents/planner.agent.md
 
 # ======================
 # VAULT CONTENT (keep structure, ignore personal notes)
@@ -61,6 +62,9 @@ Projects/**/*.md
 
 # Keep README files for structure documentation
 !**/README.md
+
+# Keep CONTEXT.md files for project state
+!**/CONTEXT.md
 
 # ======================
 # DEPENDENCIES

@@ -14,7 +14,6 @@ Unlike agents (personality) and skills (knowledge), instructions are **rules**.
 
 | Instruction | Scope | Purpose |
 |-------------|-------|---------|
-| **[assistant.instructions.md](assistant.instructions.md)** | Global | Base Jointhubs instructions, vault structure |
 | **[projects.instructions.md](projects.instructions.md)** | `Projects/**` | How to work in project directories |
 | **[operations.instructions.md](operations.instructions.md)** | `Operations/**` | How to handle operational tasks |
 
@@ -36,31 +35,3 @@ When the user is working in a matching directory, these instructions are active.
 2. Add `applyTo` frontmatter with glob pattern
 3. Write the instruction rules
 4. Add to this README
-
-### Instruction Template
-
-```markdown
----
-applyTo: "Path/Pattern/**"
----
-
-# [Scope] Directory Instructions
-
-> These instructions apply when [context].
-
-## Purpose
-
-[What this instruction set covers]
-
-## Rules
-
-[The actual instructions]
-
-## Templates
-
-[Any templates relevant to this context]
-
-## Git Conventions
-
-[How to commit changes in this context]
-```

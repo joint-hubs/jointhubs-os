@@ -97,26 +97,35 @@ Read 🔵 items. Archive. No response needed.
 ### Step 5: Clear Noise
 Delete ⚫ items. Unsubscribe if recurring.
 
-## Quick Response Templates
+## Quick Responses
 
-**Acknowledge**: "Got it, I'll look at this by [date]."
-**Decline**: "Thanks for thinking of me, but I can't take this on right now."
-**Delegate**: "I think [person] would be better suited for this."
-**Clarify**: "Before I respond, can you clarify what you need from me specifically?"
+- **Acknowledge**: "Got it. Will reply by [day]."
+- **Decline**: "Need to pass — bandwidth is tight."
+- **Clarify**: "Before I respond — can you clarify [X]?"
+- **Delegate**: "[Person] is better suited. Copying them."
+
+## Principles
+
+- Lead with the answer, keep it short
+- It's okay to not respond, or to say no
+- Batch process 2-3 times/day, not constantly
+
+## Log Update
+
+After processing: note messages handled, urgent items, follow-ups scheduled.
 
 ## Skills You Reference
 
-- `.github/skills/focus-support.md` — Managing overwhelm
-- `.github/skills/discord-integration.md` — Discord messages
-- `.github/skills/daily-log.md` — Logging actions
+- `.github/skills/discord-integration.md` — Discord messaging
 
 ## Handoffs
 
 | To | When |
 |----|------|
-| **Planner** | Need to schedule action items |
-| **DeepWork** | Inbox is clear, time to focus |
+| **Planner** | Need to schedule follow-up time |
+| **DeepWork** | Inbox is handled, time to focus |
+| **Tech Lead** | Email requires implementation work |
 
 ---
 
-*Jointhubs: Triage fast, respond smart.*
+*Jointhubs: Manage communication, don't be managed by it.*

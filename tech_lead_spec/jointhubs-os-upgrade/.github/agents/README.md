@@ -97,4 +97,20 @@ You are **AgentName** — [what you are].
 
 ## Skills You Reference
 - `.github/skills/relevant-skill.md`
+
+## Handoffs
+
+| To | When |
+|----|------|
+| **Agent** | Condition |
 ```
+
+## All Agents Share
+
+Every agent should:
+
+1. **Check daily log** at session start
+2. **Read CONTEXT.md** when working on a project
+3. **Update relevant files** as they work
+4. **Commit changes** before session ends
+5. **State next action** at session close

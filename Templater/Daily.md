@@ -2,9 +2,13 @@
 date: <% tp.date.now("YYYY-MM-DD", 0, tp.file.title, "YYYY-MM-DD") %>
 week: <% tp.date.now("YYYY-[W]W", 0, tp.file.title, "YYYY-MM-DD") %>
 year: <% tp.date.now("YYYY", 0, tp.file.title, "YYYY-MM-DD") %>
+type: daily
+status: active
 tags:
   - daily
-type: notes
+  - type/daily
+created: <% tp.date.now("YYYY-MM-DD", 0, tp.file.title, "YYYY-MM-DD") %>
+updated: <% tp.date.now("YYYY-MM-DD", 0, tp.file.title, "YYYY-MM-DD") %>
 ---
 
 # helpers
@@ -26,10 +30,17 @@ manual notebook / samsung-remainder ->
 ## Dziennik
 
 
+## Projects
+- [ ] [[Projects/|Project A]]: status
+
 ## Logs
 
 <% tp.date.now("YYYY-MM-DD HH:mm") %> - file created
 
+## End of Day
+- **Done**: 
+- **Carried**: → [[<% tp.date.now("YYYY-MM-DD", 1, tp.file.title, "YYYY-MM-DD") %>]]
+- **Tomorrow**: 
 
 ## ToDo
 ```tasks
@@ -53,6 +64,9 @@ list
 where file.mday = date(<% tp.file.title %>)
 sort file.ctime desc
 ```
+
+## Links
+Prev: [[<% tp.date.now("YYYY-MM-DD", -1, tp.file.title, "YYYY-MM-DD") %>]] | Next: [[<% tp.date.now("YYYY-MM-DD", 1, tp.file.title, "YYYY-MM-DD") %>]] | Week: [[<% tp.date.now("YYYY-[W]W", 0, tp.file.title, "YYYY-MM-DD") %>]]
 
 
 
