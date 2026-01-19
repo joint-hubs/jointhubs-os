@@ -4,7 +4,7 @@
   <img src=".github/assets/jointhubs.png" alt="Jointhubs" width="450">
 </p>
 
-> Multi-agent VS Code Copilot system for Obsidian + Google + Discord
+> Multi-agent VS Code Copilot system for Obsidian + Google Workspace
 
 **Fork this repo and make it yours.** Your brain works differently — so should your AI assistant.
 
@@ -43,6 +43,7 @@ Agents share context through **daily logs** — your memory between sessions.
 - **Notes live in Second Brain** — agents read/write these files for context.
 - **Skills define knowledge** — `.github/skills/*/SKILL.md` teaches agents how to work.
 - **Instructions enforce rules** — `.github/instructions/` scopes behavior to directories.
+- **MCP connects tools** — agents can call MCP servers (e.g., Google Workspace) to act on calendars, tasks, and email.
 - **Change your structure?** Update skills + instructions so agents can still find your notes.
 
 ## Readme Index
