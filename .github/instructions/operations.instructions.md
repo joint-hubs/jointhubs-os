@@ -1,10 +1,10 @@
 ---
-applyTo: "Operations/**"
+applyTo: "Second Brain/Operations/**"
 ---
 
 # Operations Directory Instructions
 
-> These instructions apply when working in the `Operations/` directory.
+> These instructions apply when working in the `Second Brain/Operations/` directory.
 
 ## Purpose
 
@@ -17,7 +17,7 @@ This is the **operational memory** of your system.
 ## Directory Structure
 
 ```
-Operations/
+Second Brain/Operations/
 ├── Periodic Notes/
 │   ├── Daily/           ← Daily logs (most important)
 │   │   ├── 2026-01-19.md
@@ -36,7 +36,7 @@ Operations/
 ## Daily Notes
 
 ### Location
-`Operations/Periodic Notes/Daily/YYYY-MM-DD.md`
+`Second Brain/Operations/Periodic Notes/Daily/YYYY-MM-DD.md`
 
 ### Template
 ```markdown
@@ -75,7 +75,7 @@ updated: YYYY-MM-DD
 ## Weekly Notes
 
 ### Location
-`Operations/Periodic Notes/Weekly/YYYY-WNN.md`
+`Second Brain/Operations/Periodic Notes/Weekly/YYYY-WNN.md`
 
 ### When
 Created during Friday review (Review agent)
@@ -86,7 +86,7 @@ Synthesize the week's daily notes into insights
 ## Monthly Notes
 
 ### Location
-`Operations/Periodic Notes/Monthly/YYYY-MM.md`
+`Second Brain/Operations/Periodic Notes/Monthly/YYYY-MM.md`
 
 ### When
 Created first Monday of each month
@@ -97,7 +97,7 @@ Bigger picture review and goal adjustment
 ## Meeting Notes
 
 ### Location
-`Operations/Meetings/YYYY-MM-DD-{topic}.md`
+`Second Brain/Operations/Meetings/YYYY-MM-DD-{topic}.md`
 
 ### Template
 ```markdown

@@ -74,6 +74,6 @@ A fully operational Jointhubs OS that:
 ---
 
 ## Links
-- Upgrade spec: [[tech_lead_spec/jointhubs-os-upgrade/README|Upgrade README]]
-- Templates: `Templater/` folder
-- Daily log: [[2026-01-19]]
+- Upgrade spec: [[Second Brain/Projects/jointhubs-os-upgrade/README|Project README]]
+- Templates: `.github/skills/` (template resources)
+- Daily log: [[Second Brain/Operations/Periodic Notes/Daily/2026-01-19]]

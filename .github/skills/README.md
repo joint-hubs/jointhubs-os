@@ -28,7 +28,7 @@ This means many skills with minimal context cost.
 ```
 skill-name/
 ├── SKILL.md          # Required: metadata + instructions
-├── template.md       # Optional: Templater template
+├── template.md       # Optional: template
 ├── scripts/          # Optional: automation scripts
 └── examples/         # Optional: example files
 ```
@@ -53,9 +53,9 @@ description: |
 
 ## Templates
 
-Skills can include Templater templates as resources.
+Skills can include templates as resources.
 
-Templates are in the skill folder and symlinked/copied to `Templater/` for Obsidian use.
+Templates live in the skill folder. If you use Obsidian Templater (or another system), copy the template into your own templates folder.
 
 ## Related
 

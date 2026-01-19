@@ -18,25 +18,23 @@ You are part of the Jointhubs system — a collection of AI agents that help the
 
 ## Obsidian Vault Structure
 
-The vault is organized into four main areas:
+The vault is organized into three main areas inside `Second Brain/`:
 
 | Area | Path | Purpose |
 |------|------|---------|
-| **Operations** | `Operations/` | Day-to-day: periodic notes, meetings |
-| **Personal** | `Personal/` | Life: health, finances, events, learning |
-| **Projects** | `Projects/` | Professional project documentation |
-| **Templates** | `Templater/` | Note templates |
+| **Operations** | `Second Brain/Operations/` | Day-to-day: periodic notes, meetings |
+| **Personal** | `Second Brain/Personal/` | Life: health, finances, events, learning |
+| **Projects** | `Second Brain/Projects/` | Professional project documentation |
 
 ### Key Locations
 
 | Content | Path |
 |---------|------|
-| **Daily Notes** | `Operations/Periodic Notes/Daily/YYYY-MM-DD.md` |
-| **Weekly Notes** | `Operations/Periodic Notes/Weekly/YYYY-Www.md` |
-| **Meetings** | `Operations/Meetings/` |
-| **Health Tracking** | `Personal/Health/` |
-| **Projects** | `Projects/[project-name]/` |
-| **Templates** | `Templater/` |
+| **Daily Notes** | `Second Brain/Operations/Periodic Notes/Daily/YYYY-MM-DD.md` |
+| **Weekly Notes** | `Second Brain/Operations/Periodic Notes/Weekly/YYYY-Www.md` |
+| **Meetings** | `Second Brain/Operations/Meetings/` |
+| **Health Tracking** | `Second Brain/Personal/Health/` |
+| **Projects** | `Second Brain/Projects/[project-name]/` |
 
 ### Date Patterns
 
@@ -49,7 +47,7 @@ The vault is organized into four main areas:
 
 ## Daily Note Structure
 
-Daily notes use Templater. Key sections:
+Daily notes use a template. Key sections:
 
 ```markdown
 ---
@@ -150,7 +148,7 @@ When the user mentions a project by name, look for its tag in notes.
 
 ## Health Tracking
 
-Located in `Personal/Health/`:
+Located in `Second Brain/Personal/Health/`:
 
 | File | Purpose |
 |------|---------|
@@ -189,13 +187,13 @@ When you see these → Offer structure, not advice.
 ### For Recent Context
 Read today's daily note first:
 ```
-Operations/Periodic Notes/Daily/[today's date].md
+Second Brain/Operations/Periodic Notes/Daily/[today's date].md
 ```
 
 ### For Weekly Context
 Check the current weekly note:
 ```
-Operations/Periodic Notes/Weekly/[current week].md
+Second Brain/Operations/Periodic Notes/Weekly/[current week].md
 ```
 
 ### For Historical Patterns
@@ -214,11 +212,12 @@ Use `grep_search` for specific terms:
 ## Skills Library
 
 Reference these for detailed workflows:
-- `.github/skills/obsidian-vault.md` — Full vault navigation
-- `.github/skills/weekly-review.md` — Weekly review process
-- `.github/skills/focus-support.md` — Focus & energy strategies
-- `.github/skills/goal-tracking.md` — Goal setting and tracking
-- `.github/skills/discord-integration.md` — Discord messaging & channels
+- `.github/skills/obsidian-vault/` — Full vault navigation
+- `.github/skills/daily-log/` — Daily log conventions
+- `.github/skills/weekly-review/` — Weekly review process
+- `.github/skills/project-context/` — Project state tracking
+- `.github/skills/session-rituals/` — Planning & review sessions
+- `.github/skills/focus-support/` — Focus & energy strategies
 
 ---
 

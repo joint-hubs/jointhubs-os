@@ -4,7 +4,7 @@ Track personal events, celebrations, and important dates.
 
 ## Suggested Format
 
-Use the `Templater/Event.md` template:
+Use a simple template like this:
 
 ```markdown
 # Event Name

@@ -20,19 +20,21 @@ Conventions for working with this Obsidian vault.
 
 ```
 /
-├── Operations/           # Day-to-day operations
-│   ├── Periodic Notes/   # Daily, Weekly
-│   │   ├── Daily/        # YYYY-MM-DD.md
-│   │   └── Weekly/       # YYYY-Www.md
-│   └── Meetings/         # Meeting notes
-├── Projects/             # Active projects
-│   └── {project-name}/
-│       ├── README.md
-│       └── CONTEXT.md
-└── .github/              # Agent configuration
-    ├── agents/
-    ├── skills/
-    └── instructions/
+├── .github/              # Agent configuration
+│   ├── agents/
+│   ├── skills/
+│   └── instructions/
+└── Second Brain/          # Your notes
+  ├── Operations/        # Day-to-day operations
+  │   ├── Periodic Notes/# Daily, Weekly
+  │   │   ├── Daily/     # YYYY-MM-DD.md
+  │   │   └── Weekly/    # YYYY-Www.md
+  │   └── Meetings/      # Meeting notes
+  ├── Personal/          # Life tracking
+  └── Projects/          # Active projects
+    └── {project-name}/
+      ├── README.md
+      └── CONTEXT.md
 ```
 
 ## File Naming
@@ -70,5 +72,5 @@ Wiki links: `[[Note Name]]` or `[[folder/Note|Display Text]]`
 
 Common patterns:
 - `[[2026-01-19]]` — Daily note
-- `[[Projects/my-project/CONTEXT]]` — Project context
+- `[[Second Brain/Projects/my-project/CONTEXT]]` — Project context
 - `[[2026-W03#Next]]` — Section of weekly note

@@ -1,10 +1,10 @@
 ---
-applyTo: "Projects/**"
+applyTo: "Second Brain/Projects/**"
 ---
 
 # Project Directory Instructions
 
-> These instructions apply when working in any `Projects/` subdirectory.
+> These instructions apply when working in any `Second Brain/Projects/` subdirectory.
 
 ## At Session Start
 
@@ -17,7 +17,7 @@ applyTo: "Projects/**"
 Every project directory SHOULD have:
 
 ```
-Projects/{project}/
+Second Brain/Projects/{project}/
 ├── README.md         ← What is this project?
 ├── CONTEXT.md        ← Past / Current / Future state
 └── tasks/            ← Task breakdown (if needed)
@@ -85,4 +85,4 @@ If the work requires a different agent:
 When a project is complete:
 1. Update CONTEXT.md with final state
 2. Ensure all tasks are in `done/`
-3. Consider archiving to `Projects/done/`
+3. Consider archiving to `Second Brain/Projects/done/`

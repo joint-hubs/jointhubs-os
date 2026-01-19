@@ -1,6 +1,6 @@
 # Weekly Notes
 
-Weekly review notes created with `Templater/Weekly.md`.
+Weekly review notes created with `.github/skills/weekly-review/template.md` (copy into your template system).
 
 ## Naming Convention
 

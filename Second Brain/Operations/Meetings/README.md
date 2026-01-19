@@ -2,7 +2,7 @@
 
 Meeting notes are stored here.
 
-Use the `Templater/Meeting.md` template to create new meeting notes.
+Use your own meeting template and store it in `.github/skills/` or your template system.
 
 ## Structure
 

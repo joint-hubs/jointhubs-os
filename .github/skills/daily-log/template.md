@@ -31,7 +31,7 @@ manual notebook / samsung-remainder ->
 
 
 ## Projects
-- [ ] [[Projects/|Project A]]: status
+- [ ] [[Second Brain/Projects/Project A/CONTEXT|Project A]]: status
 
 ## Logs
 

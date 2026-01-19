@@ -4,7 +4,7 @@ Track financial information, budgets, and transactions.
 
 ## Suggested Format
 
-Use the `Templater/Finances.md` template for financial tracking:
+Use a simple template like this for financial tracking:
 
 ```markdown
 # YYYY-MM Finances

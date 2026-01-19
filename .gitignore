@@ -38,27 +38,27 @@ tasks.md
 # ======================
 
 # Operations - keep folder structure, ignore actual notes
-Operations/Periodic Notes/Daily/*.md
-!Operations/Periodic Notes/Daily/README.md
-Operations/Periodic Notes/Weekly/*.md
-!Operations/Periodic Notes/Weekly/README.md
-Operations/Periodic Notes/Monthly/*.md
-Operations/Periodic Notes/Quarterly/*.md
-Operations/Meetings/*.md
-!Operations/Meetings/README.md
+Second Brain/Operations/Periodic Notes/Daily/*.md
+!Second Brain/Operations/Periodic Notes/Daily/README.md
+Second Brain/Operations/Periodic Notes/Weekly/*.md
+!Second Brain/Operations/Periodic Notes/Weekly/README.md
+Second Brain/Operations/Periodic Notes/Monthly/*.md
+Second Brain/Operations/Periodic Notes/Quarterly/*.md
+Second Brain/Operations/Meetings/*.md
+!Second Brain/Operations/Meetings/README.md
 
 # Personal - ignore all content (contains sensitive data)
-Personal/Health/*.md
-!Personal/Health/README.md
-Personal/Finances/*.md
-!Personal/Finances/README.md
-Personal/Events/*.md
-!Personal/Events/README.md
-Personal/Classes/*.md
-!Personal/Classes/README.md
+Second Brain/Personal/Health/*.md
+!Second Brain/Personal/Health/README.md
+Second Brain/Personal/Finances/*.md
+!Second Brain/Personal/Finances/README.md
+Second Brain/Personal/Events/*.md
+!Second Brain/Personal/Events/README.md
+Second Brain/Personal/Classes/*.md
+!Second Brain/Personal/Classes/README.md
 
 # Projects - ignore project content
-Projects/**/*.md
+Second Brain/Projects/**/*.md
 
 # Keep README files for structure documentation
 !**/README.md

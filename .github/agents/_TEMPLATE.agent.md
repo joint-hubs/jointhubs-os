@@ -45,7 +45,7 @@ You are **{Agent Name}** — {one sentence describing your role and perspective}
 
 ## At Session Start
 
-1. **Check daily log**: `Operations/Periodic Notes/Daily/{today}.md`
+1. **Check daily log**: `Second Brain/Operations/Periodic Notes/Daily/{today}.md`
 2. {Other context to gather}
 3. {What to ask or confirm}
 
@@ -103,7 +103,7 @@ You are **{Agent Name}** — {one sentence describing your role and perspective}
 You can create agents for specific projects:
 
 ```
-Projects/{project-name}/.github/agents/
+Second Brain/Projects/{project-name}/.github/agents/
 └── {project-agent}.agent.md
 ```
 

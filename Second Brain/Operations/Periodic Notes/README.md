@@ -13,11 +13,11 @@ Regular planning and review notes.
 
 ## Templates
 
-Use templates from `Templater/`:
-- `Daily.md` — Creates daily note with Tasks plugin integration
-- `Weekly.md` — Creates weekly review with embedded daily journals
-- `Monthly.md` — Monthly review with goal tracking
-- `Quarterly.md` — Quarterly review with habit assessment
+Use templates from `.github/skills/`:
+- `daily-log/template.md` — Daily note with Tasks plugin integration
+- `weekly-review/template.md` — Weekly review with embedded daily journals
+
+For monthly/quarterly reviews, create your own templates and store them in `.github/skills/` or your template system.
 
 ## Daily ↔ Weekly Link
 

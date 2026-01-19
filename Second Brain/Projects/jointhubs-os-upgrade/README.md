@@ -23,7 +23,7 @@ This project upgraded the jointhubs-os agent framework to introduce:
 ## Structure
 
 ```
-Projects/jointhubs-os-upgrade/
+Second Brain/Projects/jointhubs-os-upgrade/
 ├── README.md       ← You are here
 └── CONTEXT.md      ← Past/Current/Future state
 ```

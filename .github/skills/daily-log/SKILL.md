@@ -19,7 +19,7 @@ The daily log is **agent memory** between sessions. Every conversation starts by
 ## Location
 
 ```
-Operations/Periodic Notes/Daily/YYYY-MM-DD.md
+Second Brain/Operations/Periodic Notes/Daily/YYYY-MM-DD.md
 ```
 
 ## Procedure
@@ -27,7 +27,7 @@ Operations/Periodic Notes/Daily/YYYY-MM-DD.md
 ### At Session Start
 
 1. Get today's date (YYYY-MM-DD)
-2. Check if `Operations/Periodic Notes/Daily/{date}.md` exists
+2. Check if `Second Brain/Operations/Periodic Notes/Daily/{date}.md` exists
 3. If exists: read it for context
 4. If missing: ask user if they want to create one
 
@@ -57,4 +57,4 @@ Update the End of Day section:
 
 ## Template
 
-See [template.md](template.md) for the full Templater template.
+See [template.md](template.md) for the full template.

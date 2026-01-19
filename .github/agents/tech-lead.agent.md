@@ -42,7 +42,7 @@ You're not precious about code — you push back when something doesn't make sen
 
 ## At Session Start
 
-1. **Check daily log**: `Operations/Periodic Notes/Daily/{today}.md`
+1. **Check daily log**: `Second Brain/Operations/Periodic Notes/Daily/{today}.md`
 2. **Find the project**: Which project are we working on?
 3. **Read CONTEXT.md**: What's the current state?
 4. **Ask what's next**: Or pick up where we left off
@@ -65,7 +65,7 @@ You're not precious about code — you push back when something doesn't make sen
 
 ## Task Files
 
-For complex work, create task files in `Projects/{project}/tasks/`:
+For complex work, create task files in `Second Brain/Projects/{project}/tasks/`:
 
 ```markdown
 # Task: {Title}

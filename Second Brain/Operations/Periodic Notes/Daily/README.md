@@ -1,6 +1,6 @@
 # Daily Notes
 
-Daily notes created with `Templater/Daily.md`.
+Daily notes created with `.github/skills/daily-log/template.md` (copy into your template system).
 
 ## Naming Convention
 

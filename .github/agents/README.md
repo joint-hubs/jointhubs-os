@@ -55,7 +55,7 @@ Use **[_TEMPLATE.agent.md](_TEMPLATE.agent.md)** to create your own agents.
 You can create agents scoped to specific projects:
 
 ```
-Projects/{project-name}/.github/agents/
+Second Brain/Projects/{project-name}/.github/agents/
 └── {project-agent}.agent.md
 ```
 

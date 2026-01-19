@@ -18,7 +18,7 @@ Structured reflection at the end of each week.
 ## Location
 
 ```
-Operations/Periodic Notes/Weekly/YYYY-Www.md
+Second Brain/Operations/Periodic Notes/Weekly/YYYY-Www.md
 ```
 
 ## Procedure
@@ -66,4 +66,4 @@ Updated weekly note with:
 
 ## Template
 
-See [template.md](template.md) for the full Templater template.
+See [template.md](template.md) for the full template.

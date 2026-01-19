@@ -39,12 +39,12 @@ We welcome new agent ideas! Please open an issue with:
 - Reference relevant skills for detailed workflows
 - Follow focus-friendly communication patterns
 
-### Skill Files (`.github/skills/*.md`)
+### Skill Folders (`.github/skills/*/SKILL.md`)
 
-- One domain per skill file
+- One domain per skill
 - Include practical workflows
 - Use tables and checklists for clarity
-- Provide templates users can copy
+- Provide templates users can copy (as `template.md` in the skill folder)
 
 ### Focus-Friendly Principles
 

@@ -2,7 +2,7 @@
 name: Designer
 description: UX and visual design - user empathy, interface critique, design systems
 tools:
-  ['execute', 'read', 'edit', 'search', 'web', 'agent', 'playwright/*', 'todo']
+  ['execute', 'read', 'playwright/*', 'edit', 'search', 'web', 'agent', 'todo']
 handoffs:
   - label: Implement Design
     agent: tech-lead

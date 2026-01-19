@@ -4,7 +4,7 @@ Track courses, learning materials, and educational content.
 
 ## Suggested Format
 
-Use the `Templater/Class.md` template to create new class notes:
+Use a simple template like this to create new class notes:
 
 ```markdown
 # Course Name

@@ -16,7 +16,7 @@ When you start ANY session, immediately check the daily log:
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  1. Find today's date: YYYY-MM-DD                                   │
-│  2. Look for: Operations/Periodic Notes/Daily/YYYY-MM-DD.md         │
+│  2. Look for: Second Brain/Operations/Periodic Notes/Daily/YYYY-MM-DD.md │
 │  3. If exists: Read it. You now know what's in progress.            │
 │  4. If missing: Ask user if they want to create one.                │
 │                                                                     │
@@ -28,19 +28,19 @@ When you start ANY session, immediately check the daily log:
 ### Daily Log Location
 
 ```
-Operations/Periodic Notes/Daily/
+Second Brain/Operations/Periodic Notes/Daily/
 ├── 2026-01-19.md          ← Today's log
 ├── 2026-01-18.md          ← Yesterday
 └── ...
 ```
 
-See `.github/skills/daily-log.md` for log format.
+See `.github/skills/daily-log/` for log format.
 
 ---
 
 ## 📝 Obsidian Conventions
 
-> **This vault uses Obsidian.** See `.github/skills/obsidian-vault.md` for full conventions.
+> **This vault uses Obsidian.** See `.github/skills/obsidian-vault/` for full conventions.
 
 **Quick Reference:**
 - Every note needs frontmatter (`type`, `status`, `created`, `updated`)
@@ -64,8 +64,8 @@ Every agent exists to move projects forward. Every conversation should end with:
 
 | Path | Purpose |
 |------|--------|
-| `Projects/{name}/CONTEXT.md` | Project state (Past/Current/Future) |
-| `Operations/Periodic Notes/Daily/` | Daily logs |
+| `Second Brain/Projects/{name}/CONTEXT.md` | Project state (Past/Current/Future) |
+| `Second Brain/Operations/Periodic Notes/Daily/` | Daily logs |
 | `.github/agents/` | Agent personalities |
 | `.github/skills/` | Domain knowledge |
 
@@ -79,7 +79,7 @@ Every project has a `CONTEXT.md` with three sections:
 2. **Current** — Where we are (status, tasks, blockers)
 3. **Future** — Where we're going (next milestone, end goal, open questions)
 
-See `.github/skills/project-lifecycle.md` for full template.
+See `.github/skills/project-context/` for full template.
 
 ---
 
@@ -103,7 +103,7 @@ Copy `.github/agents/_TEMPLATE.agent.md` to create your own agents.
 
 For project-specific agents:
 ```
-Projects/{project}/.github/agents/{agent}.agent.md
+Second Brain/Projects/{project}/.github/agents/{agent}.agent.md
 ```
 
 ### Agent Philosophy
@@ -191,5 +191,5 @@ Skills are folders in `.github/skills/` with `SKILL.md` files. They load on-dema
 ## 🔗 Related
 
 - `.github/agents/` — Agent definitions
-- `Projects/` — Active work
-- `Operations/Periodic Notes/Daily/` — Memory between sessions
+- `Second Brain/Projects/` — Active work
+- `Second Brain/Operations/Periodic Notes/Daily/` — Memory between sessions

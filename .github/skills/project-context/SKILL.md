@@ -19,7 +19,7 @@ Every project has a `CONTEXT.md` that tracks its state across three time horizon
 ## Location
 
 ```
-Projects/{project-name}/CONTEXT.md
+Second Brain/Projects/{project-name}/CONTEXT.md
 ```
 
 ## Structure
@@ -65,4 +65,4 @@ Update as state changes:
 
 ## Template
 
-See [template.md](template.md) for the full Templater template.
+See [template.md](template.md) for the full template.

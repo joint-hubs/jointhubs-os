@@ -5,7 +5,7 @@ Personal life tracking — health, finances, events, learning.
 ## Structure
 
 ```
-Personal/
+Second Brain/Personal/
 ├── Health/         # Training, nutrition, wellness
 ├── Finances/       # Financial tracking
 ├── Events/         # Personal events
@@ -28,7 +28,7 @@ Monthly financial tracking:
 - Budget vs actual
 - Investments
 
-Use the `Templater/Finances.md` template for monthly tracking.
+Create your own finance template if needed and store it in `.github/skills/` or your template system.
 
 ## Events
 
@@ -37,7 +37,7 @@ Personal events and life moments:
 - Travel
 - Milestones
 
-Use the `Templater/Event.md` template.
+Create your own event template if needed and store it in `.github/skills/` or your template system.
 
 ## Classes
 
@@ -46,4 +46,4 @@ Learning and courses:
 - Courses you're taking
 - Skills you're developing
 
-Use the `Templater/Class.md` template.
+Create your own class/learning template if needed and store it in `.github/skills/` or your template system.

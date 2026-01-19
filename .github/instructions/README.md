@@ -15,8 +15,8 @@ Unlike agents (personality) and skills (knowledge), instructions are **rules**.
 | Instruction | Scope | Purpose |
 |-------------|-------|---------|
 | **[assistant.instructions.md](assistant.instructions.md)** | Global | Base Jointhubs instructions, vault structure |
-| **[projects.instructions.md](projects.instructions.md)** | `Projects/**` | How to work in project directories |
-| **[operations.instructions.md](operations.instructions.md)** | `Operations/**` | How to handle operational tasks |
+| **[projects.instructions.md](projects.instructions.md)** | `Second Brain/Projects/**` | How to work in project directories |
+| **[operations.instructions.md](operations.instructions.md)** | `Second Brain/Operations/**` | How to handle operational tasks |
 
 ## How Instructions Work
 
@@ -24,7 +24,7 @@ Instructions use the `applyTo` frontmatter to specify when they apply:
 
 ```yaml
 ---
-applyTo: "Projects/**"
+applyTo: "Second Brain/Projects/**"
 ---
 ```
 

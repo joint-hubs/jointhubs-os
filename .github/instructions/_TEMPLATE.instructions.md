@@ -22,7 +22,7 @@ applyTo: '{path/pattern}/**'
 
 ## Related
 
-- `.github/skills/{relevant-skill}.md`
+- `.github/skills/{relevant-skill}/`
 
 ---
 
@@ -40,10 +40,10 @@ Instructions are **directory-scoped** — they apply to specific paths.
 ### Pattern Examples
 
 ```yaml
-applyTo: 'Projects/**'           # All projects
-applyTo: 'Projects/my-app/**'    # Specific project
+applyTo: 'Second Brain/Projects/**'        # All projects
+applyTo: 'Second Brain/Projects/my-app/**' # Specific project
 applyTo: '**/*.py'               # All Python files
-applyTo: 'Operations/**'         # Operations directory
+applyTo: 'Second Brain/Operations/**'      # Operations directory
 ```
 
 ### Tips

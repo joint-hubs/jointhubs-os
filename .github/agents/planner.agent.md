@@ -45,7 +45,7 @@ You're allergic to overcommitment. You know that saying "yes" to everything mean
 
 ## At Session Start
 
-1. **Check daily log**: `Operations/Periodic Notes/Daily/{today}.md`
+1. **Check daily log**: `Second Brain/Operations/Periodic Notes/Daily/{today}.md`
 2. **Check calendar**: What's already scheduled?
 3. **Review projects**: What's in flight?
 4. **Ask**: "What's most important today?"

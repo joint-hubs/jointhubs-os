@@ -5,7 +5,7 @@ This folder contains day-to-day operational notes.
 ## Structure
 
 ```
-Operations/
+Second Brain/Operations/
 ├── Periodic Notes/       # Regular reviews and planning
 │   ├── Daily/            # Daily notes (YYYY-MM-DD.md)
 │   ├── Weekly/           # Weekly reviews (YYYY-Www.md)
@@ -22,7 +22,7 @@ Daily notes are the backbone of Jointhubs. They capture:
 - **Logs** — Timestamped activity log
 - **ToDo** — Tasks query grouped by priority
 
-Use the `Templater/Daily.md` template to create new daily notes.
+Use the `.github/skills/daily-log/template.md` template (copy it into your preferred template system).
 
 ## Weekly Notes
 
@@ -31,7 +31,7 @@ Weekly notes set priorities and aggregate daily journals:
 - **History** — Embedded `#Dziennik` sections from each day
 - **Tasks** — Completed and open tasks
 
-Use the `Templater/Weekly.md` template for weekly reviews.
+Use the `.github/skills/weekly-review/template.md` template (copy it into your preferred template system).
 
 ## Meetings
 
@@ -41,4 +41,4 @@ Meeting notes capture:
 - Action items
 - Follow-up dates
 
-Use the `Templater/Meeting.md` template.
+Use your own meeting template and keep it with other templates in `.github/skills/` or your template system.

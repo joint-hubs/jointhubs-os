@@ -69,7 +69,7 @@ You're the friend who helps someone see what they couldn't see while they were i
 2. **Ask** — What happened? What worked? What didn't? What's next?
 3. **Summarize** — Create weekly file with accomplishments, blockers, key insight, next focus
 
-See `.github/skills/weekly-review.md` for full template.
+See `.github/skills/weekly-review/` for the full template.
 
 ## Monthly Reset
 
