@@ -21,13 +21,20 @@
 │              reads/writes │ daily logs                       │
 │                           ▼                                  │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │                   Second Brain/                       │   │
-│  │   Operations/ ─── Personal/ ─── Projects/             │   │
+│  │                   Second Brain/                      │   │
+│  │   Operations/ ─── Personal/ ─── Projects/            │   │
 │  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
+         │
+         │ MCP
+         ▼
+  ┌──────────────────────────────┐
+  │  External Services (MCP)     │
+  │  Google Workspace, etc.      │
+  └──────────────────────────────┘
 ```
 
-Agents share context through **daily logs** — your memory between sessions.
+Agents stay effective through **well-maintained instructions and skills** — they guide navigation, workflows, and context sharing across sessions.
 
 ## Documentation
 
