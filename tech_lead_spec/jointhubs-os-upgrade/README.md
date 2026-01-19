@@ -19,7 +19,9 @@ This folder contains a complete upgrade to the jointhubs-os `.github/` agent fra
 ├── copilot-instructions.md      ← Global rules (daily log check, etc.)
 ├── agents/
 │   ├── README.md                ← Agent overview
+│   ├── _TEMPLATE.agent.md       ← Template for custom agents
 │   ├── tech-lead.agent.md       ← Code, architecture, building
+│   ├── designer.agent.md        ← UX, visual design, user empathy
 │   ├── planner.agent.md         ← Scheduling, prioritization
 │   ├── journal.agent.md         ← Reflection, patterns
 │   ├── review.agent.md          ← Weekly synthesis
@@ -27,10 +29,12 @@ This folder contains a complete upgrade to the jointhubs-os `.github/` agent fra
 │   └── inbox.agent.md           ← Communication triage
 ├── instructions/
 │   ├── README.md                ← Instructions overview
+│   ├── _TEMPLATE.instructions.md ← Template for custom instructions
 │   ├── projects.instructions.md ← Rules for Projects/ directory
 │   └── operations.instructions.md ← Rules for Operations/ directory
 └── skills/
     ├── README.md                ← Skills overview
+    ├── _TEMPLATE.skill.md       ← Template for custom skills
     ├── daily-log.md             ← Daily logging conventions
     └── project-lifecycle.md     ← How projects move from idea to done
 ```
@@ -106,3 +110,51 @@ After applying:
 3. Navigate to a project
 4. Verify it reads CONTEXT.md
 5. Test handoffs between agents
+
+---
+
+## Extensibility
+
+### Adding Custom Agents
+
+Use the template to create project-specific or personal agents:
+
+```bash
+# Copy template
+cp .github/agents/_TEMPLATE.agent.md .github/agents/my-agent.agent.md
+
+# Or create project-specific agent
+mkdir -p Projects/my-project/.github/agents
+cp .github/agents/_TEMPLATE.agent.md Projects/my-project/.github/agents/specialist.agent.md
+```
+
+### Adding Custom Skills
+
+Domain knowledge for specific projects or topics:
+
+```bash
+cp .github/skills/_TEMPLATE.skill.md .github/skills/my-domain.md
+```
+
+### Adding Directory Instructions
+
+Rules that apply to specific folders:
+
+```bash
+cp .github/instructions/_TEMPLATE.instructions.md .github/instructions/my-context.instructions.md
+```
+
+Set the `applyTo` pattern to match your directory.
+
+---
+
+## Templates
+
+| Template | Purpose |
+|----------|---------|
+| `_TEMPLATE.agent.md` | Create new agents |
+| `_TEMPLATE.skill.md` | Create new skills |
+| `_TEMPLATE.instructions.md` | Create directory instructions |
+| `templates/DAILY_LOG.md` | Daily log structure |
+| `templates/PROJECT_CONTEXT.md` | Project CONTEXT.md |
+| `templates/PROJECT_README.md` | Project README |

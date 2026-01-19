@@ -90,11 +90,21 @@ See `.github/skills/project-lifecycle.md` for full template.
 | Agent | Select When |
 |-------|-------------|
 | **Tech Lead** | Code, architecture, debugging, implementation |
+| **Designer** | Interface review, UX critique, visual design |
 | **Planner** | Scheduling, prioritization, time blocking |
 | **Journal** | Reflection, patterns |
 | **Review** | Weekly synthesis, retrospectives |
 | **Deepwork** | Focus sessions, distraction management |
 | **Inbox** | Email, messages, communication triage |
+
+### Creating Custom Agents
+
+Copy `.github/agents/_TEMPLATE.agent.md` to create your own agents.
+
+For project-specific agents:
+```
+Projects/{project}/.github/agents/{agent}.agent.md
+```
 
 ### Agent Philosophy
 

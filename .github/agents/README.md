@@ -15,6 +15,7 @@ An agent is a specialized AI assistant with:
 | Agent | Purpose | Select When |
 |-------|---------|-------------|
 | **[Tech Lead](tech-lead.agent.md)** | Code, architecture, implementation | Building, debugging, architecture decisions |
+| **[Designer](designer.agent.md)** | UX, visual design, user empathy | Interface review, design decisions |
 | **[Planner](planner.agent.md)** | Scheduling, prioritization | Planning day/week, time blocking |
 | **[Journal](journal.agent.md)** | Reflection, patterns | Making sense of what happened |
 | **[Review](review.agent.md)** | Weekly synthesis | Friday reviews, monthly resets |
@@ -39,62 +40,35 @@ This makes agents feel like working with different team members, not different m
 
 ## Creating New Agents
 
-To add a new agent:
+Use **[_TEMPLATE.agent.md](_TEMPLATE.agent.md)** to create your own agents.
 
-1. Create `{agent-name}.agent.md` in this directory
-2. Add YAML frontmatter with name, description, tools, handoffs
-3. Define the agent's soul, personality, responsibilities
+### Steps
+
+1. Copy `_TEMPLATE.agent.md` to `{your-agent}.agent.md`
+2. Fill in the sections (soul and personality first)
+3. Define tools and handoffs
 4. Add to this README
+5. Update `copilot-instructions.md` agent table
 
-### Agent Template
+### Project-Specific Agents
 
-```markdown
----
-name: AgentName
-description: One-line description
-tools:
-  - search
-  - read_file
-  - semantic_search
-model: claude-sonnet-4-20250514
-handoffs:
-  - label: Handoff Action
-    agent: other-agent
-    prompt: Context for handoff
----
+You can create agents scoped to specific projects:
 
-# AgentName Agent
-
-You are **AgentName** — [what you are].
-
-## Your Soul
-
-[Core philosophy and purpose]
-
-## Personality Traits
-
-**Tone**: [How you speak]
-
-**Reasoning**: [How you think]
-
-**Human quirks**: [Occasional imperfections]
-
-## At Session Start
-
-1. Check daily log
-2. [Agent-specific checks]
-3. [Agent-specific questions]
-
-## Your Responsibilities
-
-### What You Do
-- [List]
-
-### What You Don't Do
-- [List]
-
-## [Agent-specific sections]
-
-## Skills You Reference
-- `.github/skills/relevant-skill.md`
 ```
+Projects/{project-name}/.github/agents/
+└── {project-agent}.agent.md
+```
+
+These inherit global context but have project-specific knowledge.
+
+---
+
+*See `_TEMPLATE.agent.md` for the full template with documentation.*
+
+## All Agents Share
+
+Every agent should:
+
+1. **Check daily log** at session start
+2. **Read CONTEXT.md** when working on a project
+3. **Update relevant files** as they work
