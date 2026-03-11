@@ -10,13 +10,33 @@ Instructions are rules that apply based on context:
 
 Unlike agents (personality) and skills (knowledge), instructions are **rules**.
 
+## Shared vs Local
+
+- Shared instructions that define repo behavior live directly in `.github/instructions/`
+- Private or machine-specific instructions should live in `.github/instructions/local/`
+- `.github/instructions/local/` is ignored by git, so you can keep personal constraints and experiments there
+
 ## Available Instructions
 
 | Instruction | Scope | Purpose |
 |-------------|-------|---------|
-| **[assistant.instructions.md](assistant.instructions.md)** | Global | Base Jointhubs instructions, vault structure |
-| **[projects.instructions.md](projects.instructions.md)** | `Second Brain/Projects/**` | How to work in project directories |
-| **[operations.instructions.md](operations.instructions.md)** | `Second Brain/Operations/**` | How to handle operational tasks |
+| **[assistant](assistant.instructions.md)** | Global | Base Jointhubs instructions, vault structure |
+| **[projects](projects.instructions.md)** | `Second Brain/Projects/**` | Working in project directories |
+| **[operations](operations.instructions.md)** | `Second Brain/Operations/**` | Operational tasks, daily notes |
+| **[health](health.instructions.md)** | `Second Brain/Personal/Health/**` | Health tracking |
+| **[agents](agents.instructions.md)** | `.github/agents/**` | Agent definitions |
+| **[skills](skills.instructions.md)** | `.github/skills/**` | Skill knowledge files |
+
+Project-specific or private instructions that should not be shared upstream belong in `local/`.
+
+## Instruction Layers
+
+| Layer | Purpose |
+|-------|---------|
+| Global | Shared rules for the whole vault and repo |
+| Directory-scoped | Shared rules for folders like Operations or Projects |
+| Project-specific | Rules for a single project such as Fenix or Neurohubs |
+| Local | Private rules for your workflow, machine, or experimental setup |
 
 ## How Instructions Work
 
@@ -32,10 +52,17 @@ When the user is working in a matching directory, these instructions are active.
 
 ## Creating New Instructions
 
-1. Create `{scope}.instructions.md` in this directory
-2. Add `applyTo` frontmatter with glob pattern
-3. Write the instruction rules
-4. Add to this README
+1. Decide whether the instruction is `shared` or `local`
+2. Create `{scope}.instructions.md` in this directory for shared rules, or in `local/` for private rules
+3. Add `applyTo` frontmatter with glob pattern
+4. Write the instruction rules
+5. Add to this README only for shared instructions
+
+## When To Keep Instructions Local
+
+- The rule encodes personal preferences you do not want upstream
+- The rule is tied to local secrets, tools, or machine setup
+- The rule is experimental and still being tested
 
 ### Instruction Template
 

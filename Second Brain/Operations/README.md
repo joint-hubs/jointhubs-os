@@ -6,6 +6,7 @@ This folder contains day-to-day operational notes.
 
 ```
 Second Brain/Operations/
+├── Docs/                 # Setup guides and reference docs
 ├── Periodic Notes/       # Regular reviews and planning
 │   ├── Daily/            # Daily notes (YYYY-MM-DD.md)
 │   ├── Weekly/           # Weekly reviews (YYYY-Www.md)
@@ -13,6 +14,14 @@ Second Brain/Operations/
 │   └── Quarterly/        # Quarterly reviews (YYYY-Qq.md)
 └── Meetings/             # Meeting notes
 ```
+
+## Docs
+
+Setup and reference guides for configuring and improving the workspace:
+
+- [Docs index](Docs/README.md) — główny indeks dokumentacji operacyjnej
+- [Repo Init](Docs/repo-init/README.md) — setup repo, środowiska, MCP i vault
+- [AI Development](Docs/ai-development/README.md) — budowa agentów, skills, promptów, instructions i MCP
 
 ## Daily Notes
 

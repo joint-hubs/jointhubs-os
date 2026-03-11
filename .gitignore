@@ -25,8 +25,17 @@ token.json
 # ======================
 tmp/
 tasks/
-tasks.md
 *.personal.md
+
+# Local AI customizations (keep private experiments and personal workflows out of upstream)
+.github/agents/local/**
+!.github/agents/local/README.md
+.github/skills/local/**
+!.github/skills/local/README.md
+.github/prompts/local/**
+!.github/prompts/local/README.md
+.github/instructions/local/**
+!.github/instructions/local/README.md
 
 # Planning documents (personal)
 *plan*.md
@@ -37,34 +46,25 @@ tasks.md
 # VAULT CONTENT (keep structure, ignore personal notes)
 # ======================
 
-# Operations - keep folder structure, ignore actual notes
-Second Brain/Operations/Periodic Notes/Daily/*.md
-!Second Brain/Operations/Periodic Notes/Daily/README.md
-Second Brain/Operations/Periodic Notes/Weekly/*.md
-!Second Brain/Operations/Periodic Notes/Weekly/README.md
-Second Brain/Operations/Periodic Notes/Monthly/*.md
-Second Brain/Operations/Periodic Notes/Quarterly/*.md
+# Operations - keep shared docs, ignore periodic and meeting notes
+Second Brain/Operations/Periodic Notes/*.md
+Second Brain/Operations/Periodic Notes/**/*.md
+!Second Brain/Operations/Periodic Notes/README.md
+!Second Brain/Operations/Periodic Notes/**/README.md
 Second Brain/Operations/Meetings/*.md
+Second Brain/Operations/Meetings/**/*.md
 !Second Brain/Operations/Meetings/README.md
+!Second Brain/Operations/Meetings/**/README.md
 
-# Personal - ignore all content (contains sensitive data)
-Second Brain/Personal/Health/*.md
-!Second Brain/Personal/Health/README.md
-Second Brain/Personal/Finances/*.md
-!Second Brain/Personal/Finances/README.md
-Second Brain/Personal/Events/*.md
-!Second Brain/Personal/Events/README.md
-Second Brain/Personal/Classes/*.md
-!Second Brain/Personal/Classes/README.md
+# Personal - ignore all notes recursively (contains sensitive data)
+Second Brain/Personal/**
+!Second Brain/Personal/README.md
+!Second Brain/Personal/**/README.md
 
-# Projects - ignore project content
-Second Brain/Projects/**/*.md
+Second Brain/Projects/*
 
 # Keep README files for structure documentation
 !**/README.md
-
-# Keep CONTEXT.md files for project state
-!**/CONTEXT.md
 
 # ======================
 # DEPENDENCIES
@@ -123,3 +123,4 @@ logs/
 dist/
 build/
 *.egg-info/
+.Rproj.user

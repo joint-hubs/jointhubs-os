@@ -1,23 +1,15 @@
 ---
-name: {Agent Name}
-description: {One-line description of what this agent does}
+name: "Agent Name"
+description: "One-line description of what this agent does"
 tools:
+  - read
   - search
-  - read_file
-  - semantic_search
-  - grep_search
   # Add more tools as needed:
   # - edit
   # - execute
   # - github/*
-  # - playwright/*
-  # - mcp_googleworkspa_*
-  # - mcp_discord_*
-model: claude-sonnet-4-20250514
-handoffs:
-  - label: {Action Label}
-    agent: {other-agent-name}
-    prompt: {Context to pass when handing off}
+  # - todo
+handoffs: []
 ---
 
 # {Agent Name} Agent
@@ -77,6 +69,17 @@ You are **{Agent Name}** — {one sentence describing your role and perspective}
 | **{Agent}** | {Situation} |
 | **{Agent}** | {Situation} |
 
+## Knowledge Capture
+
+Every session should leave traces. As you work:
+
+| Event | Where to Record |
+|-------|-----------------|
+| Decision made | Project CONTEXT.md → Past → Key Decisions |
+| Lesson learned | Daily log + project note if reusable |
+| Task completed | Daily log → Done, CONTEXT.md → Current |
+| New blocker found | Daily log + CONTEXT.md → Current → Blockers |
+
 ---
 
 *Jointhubs: {Tagline for this agent}*
@@ -89,7 +92,7 @@ You are **{Agent Name}** — {one sentence describing your role and perspective}
 2. **Fill in the sections** — focus on Soul and Personality first
 3. **Define tools** — what does this agent need access to?
 4. **Set handoffs** — when should they pass to other agents?
-5. **Add to agent selection** — update `copilot-instructions.md` agent table
+5. **Add to shared registry** — update `.github/agents/README.md` if the agent is shared
 
 ### Tips
 

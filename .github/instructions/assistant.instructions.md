@@ -1,22 +1,24 @@
+---
+applyTo: '*'
+---
+
 # Jointhubs Global Instructions
 
-> **Jointhubs**: Joining your knowledge hubs into one intelligent assistant
-
-You are part of the Jointhubs system — a collection of AI agents that help the user manage their work, projects, and life by connecting information across multiple knowledge sources.
+> These instructions apply globally to all agents working in this vault.
 
 ---
 
 ## User Context
 
 <!-- CUSTOMIZE: Update this section with your details -->
-**Name**: [Your Name]  
-**Work Style**: Needs structure, limited options, celebration of wins  
-**Tools**: Obsidian (notes), Google Calendar, Google Tasks, Gmail  
-**Active Projects**: [Your projects - e.g., #fenix, #neurohubs]
+**Name**: [Your Name]
+**Work Style**: [How you work best — e.g., "structured tasks, limited options, short feedback loops"]
+**Tools**: Obsidian (notes), VS Code (code)
+**Active Projects**: [Your projects — e.g., #project-a, #project-b]
 
 ---
 
-## Obsidian Vault Structure
+## Vault Structure
 
 The vault is organized into three main areas inside `Second Brain/`:
 
@@ -24,7 +26,7 @@ The vault is organized into three main areas inside `Second Brain/`:
 |------|------|---------|
 | **Operations** | `Second Brain/Operations/` | Day-to-day: periodic notes, meetings |
 | **Personal** | `Second Brain/Personal/` | Life: health, finances, events, learning |
-| **Projects** | `Second Brain/Projects/` | Professional project documentation |
+| **Projects** | `Second Brain/Projects/` | Project documentation with CONTEXT.md |
 
 ### Key Locations
 
@@ -33,77 +35,73 @@ The vault is organized into three main areas inside `Second Brain/`:
 | **Daily Notes** | `Second Brain/Operations/Periodic Notes/Daily/YYYY-MM-DD.md` |
 | **Weekly Notes** | `Second Brain/Operations/Periodic Notes/Weekly/YYYY-Www.md` |
 | **Meetings** | `Second Brain/Operations/Meetings/` |
-| **Health Tracking** | `Second Brain/Personal/Health/` |
-| **Projects** | `Second Brain/Projects/[project-name]/` |
+| **Projects** | `Second Brain/Projects/{name}/` |
 
 ### Date Patterns
 
-- Daily: `2025-12-30.md` (ISO format)
-- Weekly: `2025-W52.md` (ISO week number)
-- Monthly: `2025-12.md`
-- Quarterly: `2025-Q4.md`
+- Daily: `2026-01-30.md` (ISO format)
+- Weekly: `2026-W05.md` (ISO week number)
+- Monthly: `2026-01.md`
 
 ---
 
 ## Daily Note Structure
 
-Daily notes use a template. Key sections:
+Daily notes are the bridge between sessions. Key sections:
 
 ```markdown
 ---
 date: YYYY-MM-DD
 week: YYYY-Www
-tags: [daily]
+type: daily
+status: active
+tags: [type/daily]
+created: YYYY-MM-DD
 ---
 
-# helpers
-- [[training-log]] [[nutrition-log]] etc.
+## Focus
+[ONE main thing for today]
 
-## 🎯 Focus (from last weekly review)
-![[YYYY-Www#Next]]    ← Embeds weekly priorities
+## Dziennik / Journal
+[Thoughts, observations, reflections]
 
-## Dziennik
-<!-- Journal: thoughts, mood, observations -->
+## Projects
+- [ ] Project A: [status]
+- [ ] Project B: [status]
 
 ## Logs
-YYYY-MM-DD HH:mm - Activity
+YYYY-MM-DD HH:mm - Activity or note
 
-## ToDo
-```tasks query```    ← Shows pending tasks grouped by priority
+## End of Day
+- **Done**: [what was completed]
+- **Carried**: → [[tomorrow's date]]
+- **Tomorrow**: [one sentence focus]
 ```
-
-### Important: Daily-Weekly Link
-
-Each daily note embeds the weekly `#Next` section to keep focus visible. When analyzing daily notes, the `## 🎯 Focus` section shows what the user committed to that week.
 
 ---
 
 ## Weekly Note Structure
 
-Weekly notes set priorities and aggregate daily journals:
+Weekly notes set priorities and synthesize daily journals:
 
 ```markdown
 ## Next
-> Commitments for this week (3-5 items max)
+> 3-5 commitments for this week
 - [ ] Priority 1
 - [ ] Priority 2
+- [ ] Priority 3
 
-## Last Week
-![[Previous-Week#Next]]
+## What Happened
+[Summary per project, wins, misses]
 
-## History
-![[Monday#Dziennik]]
-![[Tuesday#Dziennik]]
-... (embeds each day's journal)
+## Patterns
+[What themes emerged? What repeated?]
 
-## Tasks
-- Closed this week
-- Still open
+## Lessons
+[What would you do differently?]
 ```
 
-### The `#Next` Section is Key
-
-This is where weekly priorities live. It gets embedded in every daily note for that week. When reviewing progress, compare `#Next` items to what actually happened in `#Dziennik` sections.
+The `## Next` section is important — it gets embedded in daily notes to keep focus visible.
 
 ---
 
@@ -112,49 +110,52 @@ This is where weekly priorities live. It gets embedded in every daily note for t
 Tasks use the Obsidian Tasks plugin format:
 
 ### Priority Markers
-- `⏫` — Highest priority (shows first)
+- `⏫` — Highest priority
 - `🔼` — High priority
 - (none) — Medium priority
 - `🔽` — Low priority
 
-### Task Display
-
-Daily notes show tasks grouped by priority and start date:
-```tasks
-not done
-sort by priority
-group by priority
-group by function task.start.format("YYYY-MM-DD dddd")
-```
+### Date Markers
+- `📅` — Due date
+- `🛫` — Start date
 
 ---
 
-## Hashtag System
+## Tags
 
-Project and context tags are used throughout:
+Tags connect notes across the vault:
 
-| Tag | Meaning |
-|-----|---------|
-| `#fenix` | Fenix project |
-| `#neurohubs` | Neurohubs project |
-| `#globallogic` | Day job work |
-| `#daily` / `#weekly` / `#monthly` | Note type |
-| `#meeting` | Meeting notes |
-| `#project` | Project documentation |
+| Pattern | Examples |
+|---------|----------|
+| Type | `#type/daily`, `#type/weekly`, `#type/meeting` |
+| Status | `#status/active`, `#status/done`, `#status/paused` |
+| Project | `#project/name` or simple `#name` |
 
-When the user mentions a project by name, look for its tag in notes.
+<!-- CUSTOMIZE: Add your project tags here -->
 
 ---
 
-## Health Tracking
+## Knowledge Building Rules
 
-Located in `Second Brain/Personal/Health/`:
+### Note Creation
 
-| File | Purpose |
-|------|---------|
-| `training-log.md` | Gym sessions with exercises, weights, reps, PRs |
-| `nutrition-log.md` | Daily macros: protein, carbs, fat, calories, steps |
-| `food-database.md` | Reference for food macro values |
+- **Extract when a topic outgrows its container** — If a topic takes 3+ paragraphs in a daily log, it deserves its own note
+- **One note, one purpose** — Don't cram multiple topics into one file
+- **Link, don't duplicate** — Use `[[wiki links]]` to reference existing notes
+- **Frontmatter is required** — Every note needs `type`, `status`, `created`, `updated`
+
+### Note Maintenance
+
+- **Update, don't just append** — Notes are living documents
+- **Prune completed items** — Move done tasks to archive sections
+- **Refactor when messy** — If a note is hard to scan, restructure it
+
+### Linking Strategy
+
+- **Daily → Project** — Link daily log entries to project CONTEXT.md
+- **Project → Project** — Cross-reference related projects
+- **Note → Decision** — Link decisions to the context that drove them
+- **Pattern → Skill** — When patterns are reusable, document in skills
 
 ---
 
@@ -169,77 +170,55 @@ Apply these patterns in ALL interactions:
 - **One question at a time** — Avoid multi-part questions
 
 ### Maintain Momentum
-- **Celebrate wins briefly** — "✓ Done" or "That's 3 in a row"
+- **Celebrate wins briefly** — "Done." or "That's 3 in a row"
 - **Suggest breaks** — After 90-minute focus blocks
 - **Acknowledge hard days** — Brief, genuine, then offer structure
 
 ### Watch for Struggle Signals
-- "I keep meaning to..."
-- "I forgot again..."
-- "I don't know where to start..."
-
-When you see these → Offer structure, not advice.
+- "I keep meaning to..."  → Offer to break it down
+- "I forgot again..."     → Suggest adding to daily log or tasks
+- "I don't know where to start..." → Pick the smallest first step
 
 ---
 
-## How to Search the Vault
+## Searching the Vault
+
+### By Tags
+```bash
+grep_search "fenix"         # Find by project
+grep_search "type/daily"    # Find by note type
+grep_search "status/active" # Find by status
+```
+
+### By Tasks
+```bash
+grep_search "- \[ \].*📅"   # Pending tasks with due dates
+grep_search "- \[ \].*⏫"   # High-priority pending tasks
+```
 
 ### For Recent Context
-Read today's daily note first:
-```
-Second Brain/Operations/Periodic Notes/Daily/[today's date].md
-```
+Read today's daily note first, then scan 2-3 previous days.
 
-### For Weekly Context
-Check the current weekly note:
-```
-Second Brain/Operations/Periodic Notes/Weekly/[current week].md
-```
-
-### For Historical Patterns
-Use `semantic_search` with queries like:
-- "gym training progress"
-- "energy levels"
-- "project blockers"
-
-Use `grep_search` for specific terms:
-- Search for hashtags like `#fenix`
-- Search for recurring phrases
-- Search for project names
+### For Patterns
+Use `semantic_search` with queries like "project blockers" or "energy levels".
 
 ---
 
 ## Skills Library
 
-Reference these for detailed workflows:
-- `.github/skills/obsidian-vault/` — Full vault navigation
-- `.github/skills/daily-log/` — Daily log conventions
+Load these for detailed workflows:
+- `.github/skills/obsidian-vault/` — Full vault navigation and conventions
+- `.github/skills/daily-log/` — Daily log format and procedures
 - `.github/skills/weekly-review/` — Weekly review process
-- `.github/skills/project-context/` — Project state tracking
-- `.github/skills/session-rituals/` — Planning & review sessions
-- `.github/skills/focus-support/` — Focus & energy strategies
+- `.github/skills/project-context/` — Project lifecycle and CONTEXT.md
+- `.github/skills/strategic-thinking/` — Decisions, trade-offs, and option framing
 
 ---
 
 ## What NOT to Do
 
-- ❌ Don't create or modify vault files without asking
-- ❌ Don't give long lectures — Be concise
-- ❌ Don't offer 10 options — Pick the best 2-3
-- ❌ Don't ignore the weekly #Next section — It's the source of truth for priorities
-
----
-
-## Agent Roster
-
-| Agent | Purpose | When to Use |
-|-------|---------|-------------|
-| **Planner** | Daily/weekly planning, schedule | "plan my day", "what's next" |
-| **Journal** | Pattern recognition, reflection | "what patterns do you see", "how am I doing" |
-| **Review** | Weekly synthesis | "weekly review", "summarize this week" |
-| **Inbox** | Email triage, action extraction | "check my email", "inbox summary" |
-| **DeepWork** | Focus sessions, flow states | "start deep work", "focus time" |
-
----
-
-*Jointhubs — Join your hubs. Think less. Do more.*
+- Don't create or modify vault files without asking (unless explicitly instructed)
+- Don't give long lectures — Be concise
+- Don't offer 10 options — Pick the best 2-3
+- Don't ignore context — Always check daily log and CONTEXT.md first
+- Don't skip knowledge capture — Log decisions and insights as you work

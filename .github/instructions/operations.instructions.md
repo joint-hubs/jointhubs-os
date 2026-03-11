@@ -8,11 +8,9 @@ applyTo: "Second Brain/Operations/**"
 
 ## Purpose
 
-The Operations directory contains:
-- **Periodic Notes** — Daily, weekly, monthly logs
+The Operations directory is the **operational memory** of your system:
+- **Periodic Notes** — Daily, weekly logs
 - **Meetings** — Meeting notes and action items
-
-This is the **operational memory** of your system.
 
 ## Directory Structure
 
@@ -22,11 +20,8 @@ Second Brain/Operations/
 │   ├── Daily/           ← Daily logs (most important)
 │   │   ├── 2026-01-19.md
 │   │   └── ...
-│   ├── Weekly/          ← Weekly reviews
-│   │   ├── 2026-W03.md
-│   │   └── ...
-│   └── Monthly/         ← Monthly resets
-│       ├── 2026-01.md
+│   └── Weekly/          ← Weekly reviews
+│       ├── 2026-W03.md
 │       └── ...
 └── Meetings/
     ├── 2026-01-19-standup.md
@@ -51,48 +46,62 @@ updated: YYYY-MM-DD
 # Daily Log: YYYY-MM-DD
 
 ## Focus
-- **Key**: [One main thing]
-- **Blockers**: [What's in the way]
+[One main thing for today]
 
 ## Projects
 - [ ] Project A: [Status]
 - [ ] Project B: [Status]
 
-## What Happened
-<!-- Updated throughout the day -->
+## Logs
+<!-- Timestamped entries throughout the day -->
+HH:MM — [Topic]: [What happened]
 
 ## End of Day
-- **Done**: [What got done]
-- **Carried**: [What didn't]
-- **Tomorrow**: [One sentence]
+- **Done**: [What got completed]
+- **Carried**: [What moves to tomorrow]
+- **Tomorrow**: [One sentence focus]
 ```
 
 ### Rules
-- Every session should check today's daily note
-- Update it as work happens
-- Commit changes to git
+- Every session starts by checking today's daily note
+- Update it with timestamped entries as work happens
+- End of Day section bridges to the next session
+- Keep entries concise — details go in project files, linked with `[[wiki links]]`
 
 ## Weekly Notes
 
 ### Location
-`Second Brain/Operations/Periodic Notes/Weekly/YYYY-WNN.md`
+`Second Brain/Operations/Periodic Notes/Weekly/YYYY-Www.md`
 
 ### When
-Created during Friday review (Review agent)
+Created during Friday review
 
 ### Purpose
-Synthesize the week's daily notes into insights
+Synthesize the week's daily notes into patterns, lessons, and next-week priorities.
 
-## Monthly Notes
+### Structure
+```markdown
+---
+type: weekly
+week: YYYY-Www
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+---
 
-### Location
-`Second Brain/Operations/Periodic Notes/Monthly/YYYY-MM.md`
+## Next
+- [ ] Priority 1
+- [ ] Priority 2
+- [ ] Priority 3
 
-### When
-Created first Monday of each month
+## What Happened
+[Summary per project, wins, misses]
 
-### Purpose
-Bigger picture review and goal adjustment
+## Patterns
+[Themes, recurring blockers, energy observations]
+
+## Lessons
+[What to do differently next week]
+```
 
 ## Meeting Notes
 
@@ -103,42 +112,30 @@ Bigger picture review and goal adjustment
 ```markdown
 ---
 type: meeting
-status: done
-tags: [type/meeting]
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
+date: YYYY-MM-DD
+attendees: [names]
+tags: [type/meeting, project/name]
 ---
 
-# Meeting: {Topic}
+# Meeting: {topic}
 
-**Date**: YYYY-MM-DD
-**Attendees**: [Who was there]
-**Duration**: [How long]
+## Agenda
+- Item 1
+- Item 2
 
-## Summary
-[Key points]
+## Notes
+[Key points discussed]
 
 ## Decisions
-- [Decision made]
+[What was decided and why]
 
 ## Action Items
-- [ ] [Action] — Owner
-- [ ] [Action] — Owner
-
-## Links
-- [[Daily log for this day]]
-- [[Related project]]
+- [ ] [Who]: [What] 📅 [Due date]
 ```
 
-## Git Conventions
+## Knowledge Building Rules
 
-```bash
-# Daily log updates
-git commit -m "log: daily update YYYY-MM-DD"
-
-# Weekly reviews
-git commit -m "review: weekly YYYY-WNN"
-
-# Meeting notes
-git commit -m "meeting: topic YYYY-MM-DD"
-```
+- **Daily logs are operational** — Keep them lean, link to deeper notes
+- **Extract recurring topics** — If something appears 3+ times, it deserves its own note
+- **Link decisions to context** — Use `[[project/CONTEXT]]` when logging project decisions
+- **Weekly reviews surface patterns** — This is where daily noise becomes signal

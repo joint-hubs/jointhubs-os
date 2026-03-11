@@ -20,7 +20,7 @@ Every project directory SHOULD have:
 Second Brain/Projects/{project}/
 ├── README.md         ← What is this project?
 ├── CONTEXT.md        ← Past / Current / Future state
-└── tasks/            ← Task breakdown (if needed)
+└── {working files}   ← Notes, docs, research
 ```
 
 ## CONTEXT.md is Sacred
@@ -35,7 +35,7 @@ After significant work, **update CONTEXT.md** to reflect the new state.
 
 ### Past (How We Got Here)
 - Why does this project exist?
-- What decisions have been made?
+- What decisions have been made and why?
 - What lessons have been learned?
 
 ### Current (Where We Are)
@@ -48,20 +48,31 @@ After significant work, **update CONTEXT.md** to reflect the new state.
 - What does "done" look like?
 - What questions are unresolved?
 
-## Task Files
+## When to Update CONTEXT.md
 
-For complex projects, break work into task files:
+- A task is completed or unblocked
+- A new blocker is discovered
+- An important decision is made (capture the why)
+- Scope or direction changes
+- A milestone is reached
+- The session ends with significant progress
 
-```
-tasks/
-├── 01-setup-infrastructure.md
-├── 02-implement-core-feature.md
-├── 03-add-tests.md
-└── done/
-    └── 00-initial-spike.md
-```
+## Project Lifecycle
 
-Move completed tasks to `done/` subdirectory.
+| Stage | Action |
+|-------|--------|
+| **Kickoff** | Create folder, README.md, CONTEXT.md |
+| **Active** | Work, log progress, update CONTEXT.md regularly |
+| **Paused** | Update CONTEXT.md with reason and resume conditions |
+| **Done** | Final CONTEXT.md update with lessons, optionally move to `done/` |
+
+## Knowledge Capture During Project Work
+
+Work generates knowledge. Capture it:
+- **Decisions** → Add to CONTEXT.md → Past → Key Decisions (with reasoning)
+- **Patterns** → If reusable across projects, add to relevant skill
+- **Blockers** → Note in CONTEXT.md → Current → Blockers (with workaround if found)
+- **Insights** → If topic is growing, extract to a dedicated note in the project folder
 
 ## Git Conventions
 
@@ -78,11 +89,4 @@ git commit -m "{project-name}: update CONTEXT with new direction"
 If the work requires a different agent:
 - **Need to plan?** → Planner
 - **Need to reflect?** → Journal
-- **Need to focus?** → DeepWork
-
-## Completion
-
-When a project is complete:
-1. Update CONTEXT.md with final state
-2. Ensure all tasks are in `done/`
-3. Consider archiving to `Second Brain/Projects/done/`
+- **Need to debug?** → Debug

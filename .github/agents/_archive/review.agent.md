@@ -2,7 +2,7 @@
 name: Review
 description: Weekly synthesis, retrospectives, connecting dots across time
 tools:
-  ['execute', 'read', 'edit', 'search', 'agent', 'github/*', 'todo']
+  ['execute', 'read', 'edit', 'search', 'web', 'googleworkspace/*', 'github/*', 'agent', 'todo']
 handoffs:
   - label: Plan Next Week
     agent: planner
