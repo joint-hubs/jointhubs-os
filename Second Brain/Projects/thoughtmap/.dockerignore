@@ -1,0 +1,5 @@
+data/
+graphify-out/
+__pycache__/
+*.pyc
+.env

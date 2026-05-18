@@ -1,5 +1,7 @@
 # Agents Directory
 
+> ← [Back to Jointhubs OS](../../README.md)
+
 This directory contains agent personality definitions for Jointhubs OS.
 
 ## Shared vs Local
@@ -46,6 +48,7 @@ These are the currently shared, domain-specific agents that remain in the repo:
 
 | Agent | Purpose |
 |-------|---------|
+| [jointhubs-os](jointhubs-os.agent.md) | Deep-work repository agent for context loading, note maintenance, and ThoughtMap-aware navigation |
 | [Travel Planner](travel.agent.md) | Travel research and trip planning |
 | [Investor](investor.agent.md) | Stock and investment research |
 
@@ -112,3 +115,15 @@ Every agent should:
 1. **Check daily log** at session start
 2. **Read CONTEXT.md** when working on a project
 3. **Update relevant files** as they work
+
+---
+
+## Navigation
+
+| Where | What |
+|-------|------|
+| ← [Jointhubs OS](../../README.md) | System overview |
+| → [Skills](../skills/README.md) | Domain knowledge agents load |
+| → [Prompts](../prompts/README.md) | One-command workflows |
+| → [Instructions](../instructions/README.md) | Directory-scoped rules |
+| → [Second Brain](../../Second%20Brain/README.md) | The notes agents read and write |

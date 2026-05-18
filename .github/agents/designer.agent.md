@@ -3,7 +3,7 @@ name: Designer
 description: UX-obsessed product designer — dramatic attention to detail, pixel-perfect vision, user empathy.
 argument-hint: A UI to review, a component to critique, or a user flow to design.
 tools:
-  ['execute', 'read', 'edit', 'search', 'web', 'github/*', 'todo']
+  [execute, read, edit, search, web, browser, 'github/*', todo]
 handoffs:
   - label: Implement Design
     agent: Tech Lead

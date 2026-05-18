@@ -1,53 +1,70 @@
 # Operations
 
-This folder contains day-to-day operational notes.
+> ← [Back to Second Brain](../README.md)
+
+This is where the system writes and where you keep your daily rhythm. You won't browse here often — but agents read it constantly for context, and ThoughtMap output lands here.
 
 ## Structure
 
 ```
 Second Brain/Operations/
 ├── Docs/                 # Setup guides and reference docs
-├── Periodic Notes/       # Regular reviews and planning
+├── Periodic Notes/       # Your journal and planning
 │   ├── Daily/            # Daily notes (YYYY-MM-DD.md)
 │   ├── Weekly/           # Weekly reviews (YYYY-Www.md)
 │   ├── Monthly/          # Monthly reviews (YYYY-MM.md)
 │   └── Quarterly/        # Quarterly reviews (YYYY-Qq.md)
-└── Meetings/             # Meeting notes
+├── Meetings/             # Meeting notes
+└── thoughtmap-out/       # ThoughtMap pipeline output
 ```
 
-## Docs
+## ThoughtMap Output
 
-Setup and reference guides for configuring and improving the workspace:
+When you run ThoughtMap, results land in `thoughtmap-out/`:
+- `thoughtmap.html` — interactive 2D visualization of your knowledge
+- `REPORT.md` — cluster summaries, god nodes, source breakdown
+- `entities/` — profiles of people, projects, tools across your notes
+- `clusters/` — topic group descriptions
+- `chunks.json`, `clusters.json` — machine-readable data
 
-- [Docs index](Docs/README.md) — główny indeks dokumentacji operacyjnej
-- [Repo Init](Docs/repo-init/README.md) — setup repo, środowiska, MCP i vault
-- [AI Development](Docs/ai-development/README.md) — budowa agentów, skills, promptów, instructions i MCP
+Open `thoughtmap.html` in a browser to explore your knowledge map. See [ThoughtMap README](../Projects/thoughtmap/README.md) for how to run the pipeline.
 
 ## Daily Notes
 
-Daily notes are the backbone of Jointhubs. They capture:
-- **Focus** — Weekly priorities embedded from `#Next`
-- **Dziennik** — Journal entries (thoughts, mood, observations)
-- **Logs** — Timestamped activity log
-- **ToDo** — Tasks query grouped by priority
+Daily notes are agent memory — the bridge between sessions. They capture:
+- **Focus** — weekly priorities embedded from the weekly note
+- **Journal** — thoughts, observations, reflections
+- **Logs** — timestamped activity log
+- **Tasks** — grouped by priority
 
-Use the `.github/skills/daily-log/template.md` template (copy it into your preferred template system).
+Keep a journal. Write notes. Use Wispr Flow instead of typing if that's easier — everything gets collected and fed back into ThoughtMap regardless of whether you type in Obsidian, dictate while coding in VS Code, or write in any other context.
 
 ## Weekly Notes
 
-Weekly notes set priorities and aggregate daily journals:
-- **Next** — 3-5 commitments for the week (gets embedded in daily notes)
-- **History** — Embedded `#Dziennik` sections from each day
-- **Tasks** — Completed and open tasks
+Weekly notes set priorities and synthesize daily journals:
+- **Next** — 3-5 commitments for the week
+- **History** — embedded journal sections from each day
+- **Tasks** — completed and outstanding
 
-Use the `.github/skills/weekly-review/template.md` template (copy it into your preferred template system).
+## Docs
+
+Setup and reference guides:
+- [Docs index](Docs/README.md)
+- [Repo Init](Docs/repo-init/README.md) — environment, MCP, vault setup
+- [AI Development](Docs/ai-development/README.md) — building agents, skills, prompts
 
 ## Meetings
 
-Meeting notes capture:
-- Agenda and attendees
-- Discussion notes
-- Action items
-- Follow-up dates
+Meeting notes with agenda, discussion, action items, follow-ups.
 
-Use your own meeting template and keep it with other templates in `.github/skills/` or your template system.
+---
+
+## Navigation
+
+| Where | What |
+|-------|------|
+| ← [Second Brain](../README.md) | Knowledge layer overview |
+| → [Personal](../Personal/README.md) | Health, finances, events |
+| → [Projects](../Projects/README.md) | Active work |
+| → [ThoughtMap](../Projects/thoughtmap/README.md) | The pipeline that generates thoughtmap-out/ |
+| → [Automation](../../.github/automation/README.md) | Scheduled ThoughtMap + graphify runs |

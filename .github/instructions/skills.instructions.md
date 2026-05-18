@@ -23,6 +23,11 @@ Skills are **domain knowledge** that agents load on-demand.
 ## SKILL.md Format
 
 ```markdown
+---
+name: skill-name
+description: Brief summary. Use when: "trigger 1", "trigger 2".
+---
+
 # {Skill Name} Skill
 
 > One-line description
@@ -40,10 +45,12 @@ Skills are **domain knowledge** that agents load on-demand.
 ## Rules
 
 1. **SKILL.md is the entry point** — agents load this file
-2. **Be comprehensive but scannable** — tables, lists, headers
-3. **Include examples** — show, don't just tell
-4. **Link related skills** — build a knowledge graph
-5. **Use `local/` for private skills** — keep personal or unstable workflows out of the shared root
+2. **Frontmatter is required** — include `name` and `description` for discovery
+3. **Be comprehensive but scannable** — tables, lists, headers
+4. **Include examples** — show, don't just tell
+5. **Link related skills** — build a knowledge graph
+6. **Use `references/`, `examples/`, or `scripts/` for heavy detail** — keep the entry file readable
+7. **Use `local/` for private skills** — keep personal or unstable workflows out of the shared root
 
 ## When to Create a Skill
 

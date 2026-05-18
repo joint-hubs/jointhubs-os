@@ -41,15 +41,20 @@ Factor these into the plan — they fragment focus time.
 
 ### 5. Set Today's Priorities
 
-Propose a maximum of **3 priorities** for the day.
+**If today is Monday:** First check for maintenance window tasks — small operational items (<15 min each) that have been accumulating. List them as a batch for 08:00–09:00. These are separate from the day's focus and don't count toward the priorities below.
+
+Propose a maximum of **3 priorities** for the day — framed as outcomes, not tasks.
 
 Ask: **"What's the ONE thing that, if done, makes today a win?"**
+
+If a task has been on the list for 3+ weeks and is clearly <15 minutes, move it to the maintenance window instead of treating it as a priority.
 
 ### 6. Output
 
 Update today's log with:
-- The 3 priorities
-- The ONE thing highlighted
+- **Maintenance window** (Monday only): list of operational tasks for 08:00–09:00 batch
+- The ONE thing (outcome framing: "X will be true by end of day")
+- Max 2 additional focus areas
 - Any relevant context
 
 End with a clear first action: "Ready to start? Your first task is..."

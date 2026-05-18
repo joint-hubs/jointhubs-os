@@ -9,6 +9,11 @@
         "GOOGLE_OAUTH_CLIENT_SECRET": "PASTE_YOUR_CLIENT_SECRET_HERE",
         "OAUTHLIB_INSECURE_TRANSPORT": "1"
       }
+    },
+    "thoughtmap": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["infra/mcp-chromadb/server.py"]
     }
   }
 }

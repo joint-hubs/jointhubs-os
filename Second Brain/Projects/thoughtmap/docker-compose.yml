@@ -1,0 +1,79 @@
+###############################################################################
+# ThoughtMap — Docker Compose
+#
+# Usage:
+#   1.  Copy .env.example → .env and adjust paths to your data
+#   2.  docker compose up --build
+#   3.  Open http://localhost:8585
+#
+# GPU: Ollama will use NVIDIA GPU if available. If you don't have one,
+#      remove the deploy.resources block — CPU inference is slower but works.
+###############################################################################
+
+services:
+  # ── Ollama — local LLM server (serves the embedding model) ──
+  ollama:
+    image: ollama/ollama:latest
+    container_name: thoughtmap-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    environment:
+      OLLAMA_NUM_PARALLEL: "${OLLAMA_NUM_PARALLEL:-2}"
+      OLLAMA_MAX_LOADED_MODELS: "${OLLAMA_MAX_LOADED_MODELS:-1}"
+      OLLAMA_FLASH_ATTENTION: "${OLLAMA_FLASH_ATTENTION:-1}"
+      OLLAMA_KEEP_ALIVE: "${OLLAMA_KEEP_ALIVE:-30m}"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  # ── ThoughtMap — pipeline + web server ──
+  thoughtmap:
+    build: .
+    container_name: thoughtmap-app
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      # Data sources (read-only)
+      - "${OBSIDIAN_VAULT:?Set OBSIDIAN_VAULT in .env}:/data/obsidian:ro"
+      - "${WISPR_DB_DIR:?Set WISPR_DB_DIR in .env}:/data/wispr:ro"
+      - "../../../Second Brain/Personal/daily:/data/jointhubs-daily:ro"
+      - "../../../Second Brain:/data/second-brain"
+      # Persistent storage
+      - "./data:/app/data"
+      # Output (written back to repo)
+      - "../../Operations/thoughtmap-out:/app/output"
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      THOUGHTMAP_OBSIDIAN_VAULT: /data/obsidian
+      THOUGHTMAP_OBSIDIAN_DAILY: /data/obsidian/10. Operations/Daily
+      THOUGHTMAP_WISPR_DB: /data/wispr/flow.sqlite
+      THOUGHTMAP_JOINTHUBS_DAILY: /data/jointhubs-daily
+      THOUGHTMAP_SECOND_BRAIN_DIR: /data/second-brain
+      THOUGHTMAP_MIN_YEAR: "${THOUGHTMAP_MIN_YEAR:-2025}"
+      THOUGHTMAP_OUTPUT_DIR: /app/output
+      THOUGHTMAP_DATA_DIR: /app/data
+      THOUGHTMAP_PORT: "8585"
+      THOUGHTMAP_ENABLE_ATOM_PIPELINE: "${THOUGHTMAP_ENABLE_ATOM_PIPELINE:-false}"
+      THOUGHTMAP_OLLAMA_EMBED_BATCH_SIZE: "${THOUGHTMAP_OLLAMA_EMBED_BATCH_SIZE:-8}"
+      THOUGHTMAP_OLLAMA_EMBED_CONCURRENCY: "${THOUGHTMAP_OLLAMA_EMBED_CONCURRENCY:-2}"
+      EMBEDDING_DIMENSIONS: "${EMBEDDING_DIMENSIONS:-1024}"
+    ports:
+      - "8585:8585"
+    restart: unless-stopped
+
+volumes:
+  ollama-models:

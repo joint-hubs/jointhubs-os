@@ -1,60 +1,105 @@
 # Jointhubs OS
 
 <p align="center">
-  <img src=".github/assets/jointhubs.png" alt="Jointhubs" width="450">
+  <img src=".github/assets/jointhubs.png" alt="Jointhubs OS" width="450">
 </p>
 
-> **Your AI-powered Second Brain.** A multi-agent VS Code Copilot system built on Obsidian.
+You write notes every day. Meeting notes, project decisions, late-night ideas, health logs, financial tracking. Over months and years, it adds up — hundreds of files, thousands of thoughts.
 
-Fork it. Personalize it. Let AI agents that actually *know you* handle the grind: planning your week, reviewing your code, journaling your progress, managing your projects.
+But you can't *see* them. You know the insight is in there somewhere. You just don't know where, or what connects to what.
 
-**Your brain works differently. Your AI assistant should too.**
+**Jointhubs OS** is an open-source system that turns your notes into something you can work with:
 
----
+1. **A Second Brain** — structured notes in Obsidian that agents can read and write
+2. **ThoughtMap** — a pipeline that embeds your notes, clusters them into topics, and generates an interactive 2D map of everything you think about
+3. **AI agents** — specialized personas in VS Code Copilot that maintain context across sessions, using your notes as memory
 
-## Why Jointhubs OS?
+The whole thing runs locally. Your notes stay on your machine. ThoughtMap uses Ollama for embeddings — no cloud calls unless you opt in.
 
-Most AI tools give you a blank chat window and wish you luck. Jointhubs OS gives you a **team of specialized agents** that read your notes, understand your projects, and remember what happened yesterday.
-
-This is a **starter kit**, not a finished product. The agents, skills, prompts, and vault structure are all designed to be changed. Delete what you don't need, add what you do, reshape it around how *you* think and work.
-
-- **7 agents**, each with a distinct personality and purpose
-- **8 skills** with domain knowledge agents load when needed
-- **13 prompts** for daily kickoff, commits, reviews, and more
-- **Directory-scoped instructions** that apply automatically based on what you're working on
-- **MCP integrations** to connect Google Workspace, web search, and other tools
-- **100% yours**: fork, customize, extend. Your notes stay local, your AI stays personal
+It is already useful before the system is "finished". Even in its current state, the stack can turn daily notes, reviews, and voice transcripts into a working planning surface: recurring reviews, entity tracking, project memory, and a map of what keeps showing up across your week.
 
 ---
 
-## How It Works
+## What does ThoughtMap actually show you?
+
+ThoughtMap takes all your notes, splits them into chunks, embeds them with a local model, and clusters them by meaning. The output is an interactive HTML visualization where:
+
+- **Clusters** are the topics you think about most — your "god nodes"
+- **Bridges** are ideas that connect otherwise separate topics
+- **Orphans** are thoughts that don't belong anywhere yet
+- **Entities** are people, projects, tools that appear across your knowledge base
+
+You see the shape of your thinking. Where you're deep, where you're shallow, what's connected, what's isolated.
+
+Run it nightly and your map evolves with you.
+
+**ThoughtMap maps whatever you point it at.** By default it reads the notes in this repo. But you can plug in your existing Obsidian vault, a folder of markdown files, or [Wispr Flow](https://wispr.flow) voice transcripts — ThoughtMap picks up all three and merges them into one unified map.
+
+> **Set up and run ThoughtMap** → [ThoughtMap README](Second%20Brain/Projects/thoughtmap/README.md)
+
+---
+
+## How the system works
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      VS Code Copilot                        │
-│                                                             │
-│  ┌──────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐        │
-│  │Tech Lead │ │ Planner │ │ Journal │ │ Designer │  ...    │
-│  └────┬─────┘ └────┬────┘ └────┬────┘ └────┬─────┘        │
-│       └─────────────┴──────────┴────────────┘              │
-│                         │                                   │
-│            reads/writes │ your notes                        │
-│                         ▼                                   │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │                  Second Brain/                       │  │
-│  │    Operations/ ── Personal/ ── Projects/             │  │
-│  └──────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-          │
-          │ MCP
-          ▼
-   ┌─────────────────────────────┐
-   │   External Services (MCP)   │
-   │   Google Workspace, etc.    │
-   └─────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                   VS Code + Copilot                     │
+│                                                         │
+│   Agents: Tech Lead · Planner · Journal · Designer ...  │
+│       │                                                 │
+│       │ read / write                                    │
+│       ▼                                                 │
+│   ┌─────────────────────────────────────────────────┐   │
+│   │              Second Brain/                      │   │
+│   │                                                 │   │
+│   │   Operations/  ── Personal/ ── Projects/        │   │
+│   │       │                           │             │   │
+│   │   thoughtmap-out/          thoughtmap/           │   │
+│   │   (your map)               (the pipeline)       │   │
+│   └─────────────────────────────────────────────────┘   │
+│       │                                                 │
+│       │ MCP                                             │
+│       ▼                                                 │
+│   Ollama (local) · ChromaDB · Google Workspace · ...    │
+└─────────────────────────────────────────────────────────┘
 ```
 
-Agents maintain continuity through **daily logs**. They read yesterday's notes, pick up context, and keep working where you left off.
+Agents maintain continuity through daily logs. They read yesterday's notes, pick up context, and keep working where you left off.
+
+---
+
+## Explore the system
+
+The best way to understand Jointhubs OS is to walk through it. Each area has its own README that explains what it does and links to its neighbors.
+
+**Start here:** [Build your Second Brain →](Second%20Brain/README.md)
+
+### [Second Brain](Second%20Brain/README.md) — the knowledge layer
+
+Your notes, organized into three areas. This is where agents read and write. This is what ThoughtMap maps.
+- [Operations](Second%20Brain/Operations/README.md) — system output, daily journals, docs, ThoughtMap output
+- [Personal](Second%20Brain/Personal/README.md) — health, finances, events, learning
+- [Projects](Second%20Brain/Projects/README.md) — active work, each with a `CONTEXT.md`
+
+### [Agents](.github/agents/README.md) — who does the work
+
+Specialized AI personas you select in Copilot Chat. A Tech Lead thinks differently than a Journal agent. Each brings a distinct mindset.
+
+### [Skills](.github/skills/README.md) — what agents know
+
+Domain knowledge that agents load on demand. How to write daily logs, how to do weekly reviews, how to navigate your vault, how to query ThoughtMap.
+
+### [Prompts](.github/prompts/README.md) — one-command workflows
+
+Type `/daily-kickoff` or `/weekly-review` in Copilot Chat to run a full workflow in one shot.
+
+### [Instructions](.github/instructions/README.md) — rules by context
+
+Directory-scoped rules that activate automatically. Working in `Projects/`? Project rules apply. Working in `Health/`? Health rules apply.
+
+### [Automation](.github/automation/README.md) — scheduled pipelines
+
+ThoughtMap nightly, graphify weekly. Set up once, runs in the background.
 
 ---
 
@@ -65,149 +110,75 @@ Agents maintain continuity through **daily logs**. They read yesterday's notes, 
 git clone https://github.com/YOUR_USERNAME/jointhubs-os.git
 cd jointhubs-os
 
-# 2. Open as an Obsidian vault (the repo IS your vault)
+# 2. Open as an Obsidian vault
+#    The repo IS your vault — open this folder in Obsidian
 
-# 3. Configure MCP (optional)
-cp .vscode/mcp.json.example .vscode/mcp.json
-# Add your credentials to .vscode/mcp.json
+# 3. Run ThoughtMap
+cd "Second Brain/Projects/thoughtmap"
+cp .env.example .env          # set your vault path
+docker compose up --build     # open http://localhost:8585
 
-# 4. Open in VS Code → Copilot Chat → Pick an agent → Go
+# 4. Open in VS Code with Copilot
+#    Pick an agent in Copilot Chat → start working
 ```
 
 > **Detailed setup:** [Repo Init Guide](Second%20Brain/Operations/Docs/repo-init/README.md) · [AI Development Guide](Second%20Brain/Operations/Docs/ai-development/README.md)
 
 ---
 
-## Agents
+## Privacy
 
-Specialized personas you select in Copilot Chat. Each brings a different mindset to your work.
+- **ThoughtMap runs locally** — Ollama embeddings, local clustering, no cloud calls
+- **Cloud embeddings are opt-in** — OpenAI/Google only if you configure API keys
+- **Copilot is separate** — VS Code Copilot sends context to cloud model providers, but the ThoughtMap pipeline itself does not
+- **One CDN request** — the visualization loads `vis-network.js` from CDN (vendorable)
 
-| Agent | Purpose |
-|-------|---------|
-| **Tech Lead** | Code, architecture, system design, debugging |
-| **Planner** | Daily/weekly planning, prioritization, focus sessions |
-| **Journal** | Reflection, pattern recognition, knowledge synthesis |
-| **Designer** | UX review, accessibility, interface critique |
-| **Debug** | Systematic bug investigation and resolution |
-| **Investor** | Stock research, due diligence, scenario modeling |
-| **Travel Planner** | Trip planning, accommodation research, itineraries |
+## Public-Safe Fork Workflow
 
-Create your own: copy `_TEMPLATE.agent.md` → customize → done.
+If you want to use this repo as your own operating system and still contribute upstream, keep a hard boundary between `shared framework` and `personal operating data`.
 
-## Skills
+**Safe to commit upstream:**
+- framework code, docs, templates, shared prompts, shared agents, shared skills
+- generic examples that do not reference real people, private projects, or local machine paths
 
-Domain knowledge that agents load automatically when relevant.
+**Keep local only:**
+- personal notes and journals
+- communication logs, daily execution boards, generated reviews, and ThoughtMap output built from your own notes
+- machine-specific prompts, instructions, and experiments in `.github/*/local/`
 
-| Skill | What It Teaches |
-|-------|-----------------|
-| **daily-log** | Daily note format, session continuity |
-| **weekly-review** | Weekly reflection and planning process |
-| **obsidian-vault** | Vault structure, naming, frontmatter, tags |
-| **project-context** | Project lifecycle with `CONTEXT.md` pattern |
-| **strategic-thinking** | Decision frameworks, trade-offs, scenarios |
-| **design-review** | Design checklists, accessibility standards |
-| **travel-research** | Accommodation, flights, travel deal strategies |
-| **agentic-engineering** | Building agents, skills, and prompts |
+Recommended flow:
 
-## Prompts
+1. Commit only public-safe files to your fork.
+2. Push your branch or `main` to `origin`.
+3. Open a Pull Request from your fork into `upstream`.
+4. Keep personal workflows and note content in ignored paths or local-only prompt/instruction folders.
 
-One-command workflows. Type `/prompt-name` in Copilot Chat.
+Before pushing, run a quick audit:
 
-| Prompt | What It Does |
-|--------|--------------|
-| `/daily-kickoff` | Start your day with context and priorities |
-| `/session-end` | Wrap up, log progress, set tomorrow's focus |
-| `/weekly-review` | Weekly reflection and planning |
-| `/commit` | Smart commit message generation |
-| `/deep-work` | Set up a focused work session |
-| `/design-review` | Run a UX/accessibility audit |
-| `/project-status` | Get project status from `CONTEXT.md` |
-| `/quick-capture` | Fast note capture |
-| `/new-project` | Scaffold a new project |
-| `/context-update` | Update project context |
-| `/breakdown` | Break a task into steps |
-| `/beast-mode` | Maximum intensity mode |
-| `/new-scraper` | Generate a web scraper |
-
----
-
-## Project Structure
-
+```bash
+git status --short --ignored
+git diff --cached
 ```
-jointhubs-os/
-├── .github/
-│   ├── agents/              ← Agent personalities (.agent.md)
-│   ├── skills/              ← Domain knowledge (SKILL.md per folder)
-│   ├── prompts/             ← One-command workflows (.prompt.md)
-│   ├── instructions/        ← Directory-scoped rules
-│   └── copilot-instructions.md
-├── Second Brain/            ← YOUR NOTES (Obsidian vault)
-│   ├── Operations/          ← Daily logs, meetings, docs
-│   ├── Personal/            ← Health, finances, events
-│   └── Projects/            ← Active work with CONTEXT.md
-└── README.md
-```
-
-### What Goes Where
-
-| Layer | Path | Purpose |
-|-------|------|---------|
-| **Agents** | `.github/agents/*.agent.md` | Who does the work: personalities and tool access |
-| **Skills** | `.github/skills/*/SKILL.md` | What they know: domain knowledge loaded on demand |
-| **Prompts** | `.github/prompts/*.prompt.md` | Repeatable workflows triggered with `/name` |
-| **Instructions** | `.github/instructions/*.instructions.md` | Rules auto-applied by file path |
-| **Notes** | `Second Brain/` | Your notes, read and written by agents for context |
 
 ---
 
 ## Customization
 
-This is **your** system. Customize everything.
+The vault structure (`Operations / Personal / Projects`) is the backbone — agents, skills, and ThoughtMap all depend on it. Keep the top-level areas, customize everything inside them.
 
-### The Agent Contract
+You can freely add agents, skills, prompts, and instructions. Every layer has a `local/` subfolder for private files that won't be committed:
+- `.github/agents/local/` · `.github/skills/local/` · `.github/prompts/local/` · `.github/instructions/local/`
 
-When you change your notes, update the agents so they can still find things:
+If a workflow includes your real name, private contacts, or absolute file-system paths, treat it as local by default and move it under the matching `local/` folder before opening a PR.
 
-| You Changed | Update This |
-|-------------|-------------|
-| Folder paths | `.github/skills/obsidian-vault/SKILL.md` |
-| Daily log format | `.github/skills/daily-log/SKILL.md` |
-| Project structure | `.github/skills/project-context/SKILL.md` |
-| New conventions | `.github/instructions/*.instructions.md` |
-
-### Local / Private Configuration
-
-Every customization layer has a `local/` subfolder for private files that won't be committed:
-
-- `.github/agents/local/` - Private agents
-- `.github/skills/local/` - Private skills
-- `.github/prompts/local/` - Private prompts
-- `.github/instructions/local/` - Private instructions
-- `.vscode/mcp.json` - Your MCP credentials (gitignored)
-
----
-
-## Documentation
-
-| README | What's Inside |
-|--------|---------------|
-| [Second Brain](Second%20Brain/README.md) | Note structure, conventions, customization strategies |
-| [Agents](.github/agents/README.md) | Agent catalog and how to create your own |
-| [Skills](.github/skills/README.md) | Skill catalog and authoring guide |
-| [Prompts](.github/prompts/README.md) | Available prompts and how to create them |
-| [Instructions](.github/instructions/README.md) | Directory-scoped rules and patterns |
-| [Operations Docs](Second%20Brain/Operations/Docs/README.md) | Setup guides and AI development reference |
+When you change your note conventions, update the matching skill so agents can still find things. See [Second Brain README](Second%20Brain/README.md) for details.
 
 ---
 
 ## Contributing
 
-Jointhubs OS is open source under the MIT license. We welcome new agents, skills, and prompts. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Open source under MIT. New agents, skills, and prompts welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT. See [LICENSE](LICENSE)
-
----
-
-**Your brain, your agents, your rules.** Fork it and make it yours. 🧠
+MIT. See [LICENSE](LICENSE).

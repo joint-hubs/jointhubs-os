@@ -1,7 +1,7 @@
 # Jointhubs .gitignore
 
 # ======================
-# CREDENTIALS - NEVER COMMIT
+# CREDENTIALS — NEVER COMMIT
 # ======================
 client.json
 credentials.json
@@ -21,9 +21,18 @@ token.json
 .vscode/settings.json
 
 # ======================
+# LOCAL TOOLS & RUNTIME
+# ======================
+.claude/
+.graphify_python
+.playwright-mcp/
+tmp/
+.obsidian/
+
+# ======================
 # PERSONAL/TEMPORARY FILES
 # ======================
-tmp/
+Second Brain/Projects/tmp/
 tasks/
 *.personal.md
 
@@ -37,16 +46,11 @@ tasks/
 .github/instructions/local/**
 !.github/instructions/local/README.md
 
-# Planning documents (personal)
-*plan*.md
-!README.md
-!.github/agents/planner.agent.md
-
 # ======================
 # VAULT CONTENT (keep structure, ignore personal notes)
 # ======================
 
-# Operations - keep shared docs, ignore periodic and meeting notes
+# Operations — keep shared docs, ignore periodic and meeting notes
 Second Brain/Operations/Periodic Notes/*.md
 Second Brain/Operations/Periodic Notes/**/*.md
 !Second Brain/Operations/Periodic Notes/README.md
@@ -56,12 +60,31 @@ Second Brain/Operations/Meetings/**/*.md
 !Second Brain/Operations/Meetings/README.md
 !Second Brain/Operations/Meetings/**/README.md
 
-# Personal - ignore all notes recursively (contains sensitive data)
+# Personal operations (reviews, summaries, linkedin drafts)
+Second Brain/Operations/weekly-reviews/
+Second Brain/Operations/weekly-status/
+Second Brain/Operations/Reviews/
+Second Brain/Operations/linkedin/
+Second Brain/Operations/Communication/
+Second Brain/Operations/Kanban/
+**/linkedin/
+
+# ThoughtMap output (generated from YOUR notes — sensitive)
+Second Brain/Operations/thoughtmap-out/
+!Second Brain/Operations/thoughtmap-out/README.md
+
+# Obsidian sub-vault config (personal)
+Second Brain/.obsidian/
+
+# Personal — ignore all notes recursively (contains sensitive data)
 Second Brain/Personal/**
 !Second Brain/Personal/README.md
 !Second Brain/Personal/**/README.md
 
+# Projects — ignore all except whitelisted
 Second Brain/Projects/*
+!Second Brain/Projects/README.md
+!Second Brain/Projects/thoughtmap/
 
 # Keep README files for structure documentation
 !**/README.md
@@ -99,8 +122,9 @@ pip-delete-this-directory.txt
 !.vscode/extensions.json
 !.vscode/mcp.json.example
 
-# Obsidian - keep config for consistent experience
-# .obsidian/ is NOT ignored - we want to share plugin configs
+# Obsidian — keep root config for consistent experience
+# .obsidian/ is NOT ignored — we want to share plugin configs
+.obsidian/workspace.json
 
 # JetBrains
 .idea/
@@ -116,10 +140,17 @@ Thumbs.db
 Desktop.ini
 
 # ======================
+# THOUGHTMAP (vector DB & runtime cache — generated locally)
+# ======================
+Second Brain/Projects/thoughtmap/data/
+Second Brain/Projects/thoughtmap/graphify-out/
+
+# ======================
 # BUILD & LOGS
 # ======================
 *.log
 logs/
+Second Brain/Operations/automation-logs/
 dist/
 build/
 *.egg-info/

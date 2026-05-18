@@ -39,6 +39,32 @@ The Jointhubs ecosystem is built from composable components:
 - Procedures need documentation for agents to follow
 - System context needs to be captured
 
+## Shared Skill Inventory
+
+These shared skills currently exist in this repo and should be reused before creating overlapping documentation:
+
+| Skill | Use When |
+|-------|----------|
+| `daily-log` | Session start, today's note, logging progress |
+| `weekly-review` | Weekly reflection and planning |
+| `project-context` | Updating or reading `CONTEXT.md` |
+| `obsidian-vault` | Vault structure, tags, frontmatter, file naming |
+| `obsidian-markdown` | Wikilinks, embeds, callouts, footnotes, Obsidian-specific Markdown |
+| `obsidian-bases` | Creating or editing `.base` files with filters, views, formulas |
+| `json-canvas` | Creating or editing `.canvas` files |
+| `obsidian-cli` | Operating a running Obsidian vault via CLI, plugin/theme dev |
+| `design-review` | UX critique and accessibility review |
+| `strategic-thinking` | Decision framing and trade-offs |
+| `travel-research` | Travel comparison and itinerary research |
+
+## Skill Design Guidelines
+
+- Prefer extending an existing skill when the new knowledge is adjacent and reusable
+- Create a new skill only when the topic has a clear trigger phrase and distinct workflow
+- Keep `SKILL.md` as the entry point and move dense references into `references/`, `examples/`, or `scripts/`
+- Include frontmatter with `name` and `description` so the skill is discoverable
+- Update the shared registry docs when adding a shared skill
+
 ## Technical Stack
 
 | Layer | Technologies |
@@ -125,6 +151,10 @@ Learnings during implementation.
 - [project-context](../project-context/SKILL.md) — Project state management
 - [daily-log](../daily-log/SKILL.md) — Session logging
 - [obsidian-vault](../obsidian-vault/SKILL.md) — Vault conventions
+- [obsidian-markdown](../obsidian-markdown/SKILL.md) — Obsidian-specific Markdown syntax
+- [obsidian-bases](../obsidian-bases/SKILL.md) — Obsidian Bases files and formulas
+- [json-canvas](../json-canvas/SKILL.md) — JSON Canvas structure and validation
+- [obsidian-cli](../obsidian-cli/SKILL.md) — Obsidian CLI workflows
 
 ## External References
 

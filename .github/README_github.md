@@ -19,7 +19,7 @@ This folder contains VS Code Copilot configuration for the multi-agent assistant
 | Component | Purpose | How to Use |
 |-----------|---------|------------|
 | **Agents** | AI personas with personality | Select from agent dropdown |
-| **Skills** | Knowledge packs | Loaded automatically when relevant |
+| **Skills** | Knowledge packs | Loaded automatically when relevant; see `skills/README.md` for the current catalog |
 | **Prompts** | Workflows | Type `/prompt-name` in chat |
 | **Instructions** | Rules | Applied automatically by file path |
 
@@ -55,3 +55,5 @@ This folder contains VS Code Copilot configuration for the multi-agent assistant
 4. **Instructions** apply automatically when editing matching files
 
 The system uses progressive disclosure — only relevant content loads into context.
+
+Current shared skill coverage includes vault conventions, daily and weekly workflows, project context, Obsidian Markdown, Bases, JSON Canvas, Obsidian CLI workflows, design review, strategy, travel planning, and clean web-page extraction.

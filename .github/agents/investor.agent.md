@@ -3,7 +3,7 @@ name: Investor
 description: Investment research analyst — independent stock research, scenario modeling, and critical due diligence.
 argument-hint: A stock ticker to research, a thesis to stress-test, or a portfolio to review.
 tools:
-  ['execute', 'read', 'edit', 'search', 'web', 'io.github.tavily-ai/tavily-mcp/*', 'todo']
+  [execute, read, edit, search, web, browser, 'github/*', 'io.github.tavily-ai/tavily-mcp/*', 'thoughtmap/*', 'github/*', 'firecrawl/firecrawl-mcp-server/*', todo]
 handoffs:
   - label: Scrape Financial Data
     agent: scraper

@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThoughtMap — Annotation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 24px;
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    flex-shrink: 0;
+  }
+  .topbar h1 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #e6edf3;
+  }
+  .topbar .breadcrumb {
+    font-size: 13px;
+    color: #8b949e;
+  }
+  .topbar .sep { color: #30363d; }
+  .topbar .nav-links { margin-left: auto; display: flex; gap: 12px; }
+  .topbar .nav-links a {
+    font-size: 13px; color: #58a6ff; text-decoration: none;
+  }
+  .topbar .nav-links a:hover { text-decoration: underline; }
+
+  /* ── Progress bar ── */
+  .progress-bar-wrap {
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 8px 24px;
+    flex-shrink: 0;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #8b949e;
+    margin-bottom: 6px;
+  }
+  .progress-track {
+    height: 4px;
+    background: #21262d;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #1f6feb;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* ── Main layout ── */
+  .main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── Left sidebar — task queue ── */
+  .sidebar {
+    width: 260px;
+    min-width: 240px;
+    background: #161b22;
+    border-right: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .sidebar-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #30363d;
+    font-size: 12px;
+    color: #8b949e;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .sidebar-header .filter-tabs {
+    display: flex;
+    gap: 4px;
+  }
+  .filter-tab {
+    padding: 2px 8px;
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    color: #8b949e;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+  .filter-tab.active {
+    background: #1f6feb22;
+    border-color: #1f6feb;
+    color: #58a6ff;
+  }
+
+  .task-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+  .task-list::-webkit-scrollbar { width: 4px; }
+  .task-list::-webkit-scrollbar-track { background: transparent; }
+  .task-list::-webkit-scrollbar-thumb { background: #30363d; border-radius: 2px; }
+
+  .task-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: background 0.1s;
+  }
+  .task-item:hover { background: #1c2128; }
+  .task-item.active {
+    background: #1c2128;
+    border-left-color: #1f6feb;
+  }
+  .task-item.done { opacity: 0.55; }
+  .task-item.done .task-name { text-decoration: line-through; }
+
+  .task-name {
+    font-size: 13px;
+    color: #e6edf3;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+  }
+  .task-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #8b949e;
+  }
+  .type-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+  .type-person      { background: #1f3a5f; color: #79c0ff; }
+  .type-organization { background: #2d1a45; color: #d2a8ff; }
+  .type-project     { background: #1a2e20; color: #7ee787; }
+  .type-tool        { background: #3d2b00; color: #ffa657; }
+  .type-location    { background: #3d1a1a; color: #ff7b72; }
+  .type-concept     { background: #1a2d3d; color: #76e4f7; }
+  .type-other       { background: #21262d; color: #8b949e; }
+
+  .done-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    background: #1a2e20;
+    color: #3fb950;
+    flex-shrink: 0;
+  }
+
+  /* ── Center — annotation card ── */
+  .card-wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 760px;
+  }
+  .card-wrap::-webkit-scrollbar { width: 6px; }
+  .card-wrap::-webkit-scrollbar-track { background: transparent; }
+  .card-wrap::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+
+  .empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #8b949e;
+    text-align: center;
+    padding: 48px;
+  }
+  .empty-state .icon { font-size: 40px; }
+  .empty-state h2 { font-size: 18px; color: #c9d1d9; }
+  .empty-state p { font-size: 14px; max-width: 360px; line-height: 1.6; }
+
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card-header .entity-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e6edf3;
+    flex: 1;
+    word-break: break-word;
+  }
+  .card-header .mention-count {
+    font-size: 12px;
+    color: #8b949e;
+    flex-shrink: 0;
+    padding-top: 6px;
+  }
+
+  .card-section {
+    padding: 14px 20px;
+    border-bottom: 1px solid #21262d;
+  }
+  .card-section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #8b949e;
+    margin-bottom: 8px;
+  }
+  .section-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #c9d1d9;
+  }
+  .aliases-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .alias-chip {
+    padding: 2px 8px;
+    background: #21262d;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #8b949e;
+  }
+  .source-list {
+    font-size: 12px;
+    color: #8b949e;
+    line-height: 1.8;
+    font-family: 'SF Mono', 'Consolas', monospace;
+  }
+
+  /* ── Annotation form ── */
+  .form-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .form-card-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid #30363d;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #8b949e;
+  }
+  .form-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8b949e;
+  }
+
+  /* Decision buttons */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .decision-btn {
+    padding: 10px 8px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #c9d1d9;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .decision-btn .d-icon { font-size: 18px; }
+  .decision-btn .d-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .decision-btn .d-hint { font-size: 10px; color: #8b949e; line-height: 1.3; }
+  .decision-btn:hover { background: #2d333b; border-color: #8b949e; }
+  .decision-btn.selected-verify  { background: #1a2e20; border-color: #3fb950; color: #3fb950; }
+  .decision-btn.selected-reject  { background: #3d1a1a; border-color: #f85149; color: #f85149; }
+  .decision-btn.selected-retype  { background: #1f3a5f; border-color: #58a6ff; color: #58a6ff; }
+  .decision-btn.selected-alias   { background: #2d1a45; border-color: #bc8cff; color: #bc8cff; }
+  .decision-btn.selected-merge   { background: #3d2b00; border-color: #e3b341; color: #e3b341; }
+  .decision-btn.selected-unsure  { background: #21262d; border-color: #8b949e; color: #8b949e; }
+
+  /* Type selector (shown when decision=retype) */
+  .type-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .type-btn {
+    padding: 6px 4px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #8b949e;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  .type-btn:hover { background: #2d333b; }
+  .type-btn.selected { border-color: #58a6ff; color: #58a6ff; background: #1f3a5f; }
+
+  .retype-section { display: none; }
+  .retype-section.visible { display: flex; flex-direction: column; gap: 6px; }
+
+  .canonical-wrap { display: none; }
+  .canonical-wrap.visible { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-input {
+    padding: 8px 12px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #c9d1d9;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+  }
+  .form-input:focus { border-color: #58a6ff; }
+  .form-input::placeholder { color: #6e7681; }
+
+  textarea.form-input {
+    resize: vertical;
+    min-height: 72px;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  /* Submit row */
+  .submit-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-primary {
+    padding: 10px 24px;
+    background: #238636;
+    border: 1px solid #2ea043;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: #2ea043; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-secondary {
+    padding: 10px 16px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #c9d1d9;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: #2d333b; }
+
+  .save-status {
+    font-size: 13px;
+    margin-left: auto;
+    min-height: 18px;
+  }
+  .save-status.ok { color: #3fb950; }
+  .save-status.err { color: #f85149; }
+
+  /* Already annotated banner */
+  .annotated-banner {
+    display: none;
+    padding: 10px 16px;
+    background: #1a2e20;
+    border: 1px solid #2ea043;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #3fb950;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .annotated-banner.visible { display: flex; }
+  .annotated-banner strong { color: #56d364; }
+
+  /* ── Right panel — help ── */
+  .help-panel {
+    width: 220px;
+    min-width: 200px;
+    background: #0d1117;
+    border-left: 1px solid #21262d;
+    padding: 20px 16px;
+    overflow-y: auto;
+    font-size: 12px;
+    color: #8b949e;
+    flex-shrink: 0;
+  }
+  .help-panel h3 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #6e7681;
+    margin-bottom: 12px;
+  }
+  .help-section { margin-bottom: 16px; }
+  .help-section h4 {
+    font-size: 11px;
+    font-weight: 600;
+    color: #8b949e;
+    margin-bottom: 4px;
+  }
+  .help-section p, .help-section li {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #6e7681;
+  }
+  .help-section ul { padding-left: 14px; }
+  .kbd {
+    display: inline-block;
+    padding: 1px 5px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 3px;
+    font-size: 10px;
+    color: #8b949e;
+    font-family: monospace;
+  }
+  .shortcut-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  /* ── Loading/error overlays ── */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: #0d1117;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 100;
+  }
+  .overlay.hidden { display: none; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid #30363d;
+    border-top-color: #1f6feb;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .overlay p { font-size: 14px; color: #8b949e; }
+
+  /* Stats bar at top of sidebar */
+  .stats-bar {
+    padding: 8px 16px;
+    border-bottom: 1px solid #21262d;
+    display: flex;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 2px; }
+  .stat-value { font-size: 16px; font-weight: 700; color: #e6edf3; }
+  .stat-label { font-size: 10px; color: #6e7681; text-transform: uppercase; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="loading-overlay">
+  <div class="spinner"></div>
+  <p>Ładowanie zadań anotacji...</p>
+</div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <h1>ThoughtMap</h1>
+  <span class="sep">›</span>
+  <span class="breadcrumb">Annotation — Entity Type Resolution</span>
+  <div class="nav-links">
+    <a href="/">← Mapa myśli</a>
+  </div>
+</div>
+
+<!-- Progress bar -->
+<div class="progress-bar-wrap">
+  <div class="progress-meta">
+    <span id="progress-text">Ładowanie...</span>
+    <span id="progress-pct">0%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<!-- Main layout -->
+<div class="main">
+
+  <!-- Left sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <span>Zadania</span>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="setFilter('all')">Wszystkie</button>
+        <button class="filter-tab" data-filter="pending" onclick="setFilter('pending')">Nowe</button>
+        <button class="filter-tab" data-filter="annotated" onclick="setFilter('annotated')">Gotowe</button>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-total">—</span>
+        <span class="stat-label">Łącznie</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-done">—</span>
+        <span class="stat-label">Gotowe</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-pending">—</span>
+        <span class="stat-label">Zostało</span>
+      </div>
+    </div>
+    <div class="task-list" id="task-list"></div>
+  </div>
+
+  <!-- Center card -->
+  <div class="card-wrap" id="card-wrap">
+    <div class="empty-state" id="empty-state">
+      <div class="icon">🏷️</div>
+      <h2>Annotation UI</h2>
+      <p>Kliknij <strong>Generuj zadania</strong> lub wybierz encję z listy po lewej żeby zacząć anotację.</p>
+      <br>
+      <button class="btn-primary" onclick="generateTasks()">Generuj zadania z entities.json</button>
+    </div>
+
+    <!-- Filled when task is selected -->
+    <div id="task-detail" style="display:none; display:flex; flex-direction:column; gap:20px;">
+
+      <!-- Entity info card -->
+      <div class="card" id="entity-card">
+        <div class="card-header">
+          <div>
+            <div class="entity-name" id="ent-name">—</div>
+            <div style="margin-top:6px; display:flex; gap:8px; align-items:center;">
+              <span class="type-badge type-other" id="ent-type-badge">—</span>
+              <span style="font-size:12px; color:#8b949e;" id="ent-normalized">—</span>
+            </div>
+          </div>
+          <div class="mention-count" id="ent-mentions">— wzmianek</div>
+        </div>
+
+        <div class="card-section" id="aliases-section">
+          <div class="section-label">Aliases (inne formy nazwy)</div>
+          <div class="aliases-list" id="ent-aliases"></div>
+        </div>
+
+        <div class="card-section">
+          <div class="section-label">Podsumowanie AI</div>
+          <div class="section-body" id="ent-summary">—</div>
+        </div>
+
+        <div class="card-section" id="boundaries-section">
+          <div class="section-label">Kontekst (center / edges)</div>
+          <div class="section-body" id="ent-boundaries"></div>
+        </div>
+
+        <div class="card-section" id="sources-section">
+          <div class="section-label">Przykładowe pliki źródłowe</div>
+          <div class="source-list" id="ent-sources"></div>
+        </div>
+      </div>
+
+      <!-- Annotation form -->
+      <div class="form-card">
+        <div class="form-card-header">Twoja decyzja</div>
+        <div class="form-body">
+
+          <!-- Already annotated banner -->
+          <div class="annotated-banner" id="annotated-banner">
+            <span>✓</span>
+            <span>Już zanotowane jako <strong id="prev-decision">—</strong>
+            <span id="prev-type-span"> → typ: <strong id="prev-type">—</strong></span>
+            </span>
+            <span style="color:#8b949e;">Możesz poprawić poniżej.</span>
+          </div>
+
+          <!-- Decision buttons -->
+          <div class="form-group">
+            <div class="form-label">Co chcesz zrobić z tą encją?</div>
+            <div class="decision-grid">
+              <button class="decision-btn" data-decision="verify" onclick="selectDecision('verify')">
+                <span class="d-icon">✅</span>
+                <span class="d-label">Verify</span>
+                <span class="d-hint">Typ jest poprawny</span>
+              </button>
+              <button class="decision-btn" data-decision="reject" onclick="selectDecision('reject')">
+                <span class="d-icon">❌</span>
+                <span class="d-label">Reject</span>
+                <span class="d-hint">To nie jest encja</span>
+              </button>
+              <button class="decision-btn" data-decision="retype" onclick="selectDecision('retype')">
+                <span class="d-icon">🔄</span>
+                <span class="d-label">Retype</span>
+                <span class="d-hint">Zmień typ encji</span>
+              </button>
+              <button class="decision-btn" data-decision="alias" onclick="selectDecision('alias')">
+                <span class="d-icon">🔗</span>
+                <span class="d-label">Alias</span>
+                <span class="d-hint">To alternatywna nazwa innej encji</span>
+              </button>
+              <button class="decision-btn" data-decision="merge" onclick="selectDecision('merge')">
+                <span class="d-icon">🔀</span>
+                <span class="d-label">Merge</span>
+                <span class="d-hint">Połącz z inną encją</span>
+              </button>
+              <button class="decision-btn" data-decision="unsure" onclick="selectDecision('unsure')">
+                <span class="d-icon">❓</span>
+                <span class="d-label">Unsure</span>
+                <span class="d-hint">Nie jestem pewien</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Retype: type selector -->
+          <div class="retype-section form-group" id="retype-section">
+            <div class="form-label">Nowy typ encji</div>
+            <div class="type-grid">
+              <button class="type-btn" data-type="person" onclick="selectType('person')">Person</button>
+              <button class="type-btn" data-type="organization" onclick="selectType('organization')">Org</button>
+              <button class="type-btn" data-type="project" onclick="selectType('project')">Project</button>
+              <button class="type-btn" data-type="tool" onclick="selectType('tool')">Tool</button>
+              <button class="type-btn" data-type="location" onclick="selectType('location')">Location</button>
+              <button class="type-btn" data-type="concept" onclick="selectType('concept')">Concept</button>
+              <button class="type-btn" data-type="other" onclick="selectType('other')">Other</button>
+            </div>
+          </div>
+
+          <!-- Canonical name (for alias/merge) -->
+          <div class="canonical-wrap form-group" id="canonical-wrap">
+            <div class="form-label">Nazwa kanoniczna (opcjonalnie)</div>
+            <input
+              type="text"
+              class="form-input"
+              id="canonical-input"
+              placeholder="np. Jointhubs, B. Braun, Jane Doe…"
+            >
+          </div>
+
+          <!-- Reason -->
+          <div class="form-group">
+            <div class="form-label">Powód / uwaga (opcjonalnie)</div>
+            <textarea
+              class="form-input"
+              id="reason-input"
+              placeholder="np. 'To jest firma, nie lokacja' lub 'Za krótkie, żeby być encją'…"
+            ></textarea>
+          </div>
+
+          <!-- Submit row -->
+          <div class="submit-row">
+            <button class="btn-primary" id="save-btn" onclick="saveAnnotation()" disabled>
+              Zapisz
+            </button>
+            <button class="btn-secondary" onclick="nextTask()">Pomiń →</button>
+            <span class="save-status" id="save-status"></span>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /task-detail -->
+  </div><!-- /card-wrap -->
+
+  <!-- Right help panel -->
+  <div class="help-panel">
+    <h3>Jak anotować?</h3>
+
+    <div class="help-section">
+      <h4>Decyzje</h4>
+      <ul>
+        <li><strong>Verify</strong> — typ jest OK, encja jest prawdziwa</li>
+        <li><strong>Reject</strong> — to nie jest encja (fraza, śmieć, boilerplate)</li>
+        <li><strong>Retype</strong> — encja jest prawdziwa, ale ma zły typ</li>
+        <li><strong>Alias</strong> — ta nazwa to forma innej encji</li>
+        <li><strong>Merge</strong> — ta encja powinna zostać złączona z inną</li>
+        <li><strong>Unsure</strong> — nie wiesz, zostaw do sprawdzenia</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h4>Typy encji</h4>
+      <ul>
+        <li><strong>person</strong> — imię i nazwisko człowieka</li>
+        <li><strong>organization</strong> — firma, instytucja, NGO</li>
+        <li><strong>project</strong> — projekt, produkt, inicjatywa</li>
+        <li><strong>tool</strong> — oprogramowanie, framework, API</li>
+        <li><strong>location</strong> — miasto, kraj, adres</li>
+        <li><strong>concept</strong> — abstrakcyjny termin</li>
+        <li><strong>other</strong> — inne</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h4>Przykłady błędów</h4>
+      <ul>
+        <li>Adevait → <em>location</em> ❌ → powinno być <em>organization</em></li>
+        <li>B.Braun → <em>location</em> ❌ → powinno być <em>organization</em></li>
+        <li>"acceptance criteria" → encja? ❌ → Reject (boilerplate)</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h4>Skróty klawiszowe</h4>
+      <div class="shortcut-row"><span>Zapisz</span><span><kbd class="kbd">Enter</kbd></span></div>
+      <div class="shortcut-row"><span>Następne</span><span><kbd class="kbd">→</kbd></span></div>
+      <div class="shortcut-row"><span>Poprzednie</span><span><kbd class="kbd">←</kbd></span></div>
+      <div class="shortcut-row"><span>Verify</span><span><kbd class="kbd">V</kbd></span></div>
+      <div class="shortcut-row"><span>Reject</span><span><kbd class="kbd">R</kbd></span></div>
+      <div class="shortcut-row"><span>Retype</span><span><kbd class="kbd">T</kbd></span></div>
+      <div class="shortcut-row"><span>Unsure</span><span><kbd class="kbd">U</kbd></span></div>
+    </div>
+
+    <div class="help-section">
+      <h4>Co z tym robimy?</h4>
+      <p>Twoje decyzje są zapisywane do <code>data/annotations/annotations.jsonl</code> i staną się złotymi etykietami do fine-tuningu modelu NER.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────────
+let allTasks = [];
+let filteredTasks = [];
+let currentIndex = 0;
+let currentFilter = 'all';
+let selectedDecision = null;
+let selectedType = null;
+
+// ── Boot ───────────────────────────────────────────────────────────────────────
+async function boot() {
+  await loadTasks();
+}
+
+async function loadTasks() {
+  document.getElementById('loading-overlay').classList.remove('hidden');
+  try {
+    const res = await fetch('/api/annotations/tasks?limit=500');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    allTasks = data.tasks || [];
+    applyFilter(currentFilter);
+    updateStats();
+    renderTaskList();
+    if (filteredTasks.length > 0) {
+      selectTask(0);
+    }
+  } catch (e) {
+    console.error('Load error:', e);
+    document.querySelector('#loading-overlay p').textContent = 'Błąd ładowania: ' + e.message + ' — czy są już wygenerowane zadania?';
+    // Don't hide overlay, show error + generate button
+    const btn = document.createElement('button');
+    btn.className = 'btn-primary';
+    btn.textContent = 'Generuj zadania';
+    btn.onclick = generateTasks;
+    document.getElementById('loading-overlay').appendChild(btn);
+    return;
+  }
+  document.getElementById('loading-overlay').classList.add('hidden');
+}
+
+async function generateTasks() {
+  document.getElementById('loading-overlay').classList.remove('hidden');
+  document.querySelector('#loading-overlay p').textContent = 'Generowanie zadań z entities.json...';
+  try {
+    const res = await fetch('/api/annotations/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ min_mentions: 3 }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+    document.querySelector('#loading-overlay p').textContent =
+      `Wygenerowano ${data.generated} zadań, dodano ${data.added} nowych. Ładowanie...`;
+    await new Promise(r => setTimeout(r, 800));
+    await loadTasks();
+  } catch (e) {
+    document.querySelector('#loading-overlay p').textContent = 'Błąd generowania: ' + e.message;
+  }
+}
+
+// ── Filter ─────────────────────────────────────────────────────────────────────
+function setFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === f);
+  });
+  applyFilter(f);
+  renderTaskList();
+  if (filteredTasks.length > 0) selectTask(0);
+  else showEmpty();
+}
+
+function applyFilter(f) {
+  if (f === 'pending') filteredTasks = allTasks.filter(t => t.status !== 'annotated');
+  else if (f === 'annotated') filteredTasks = allTasks.filter(t => t.status === 'annotated');
+  else filteredTasks = allTasks;
+}
+
+// ── Stats ──────────────────────────────────────────────────────────────────────
+function updateStats() {
+  const total = allTasks.length;
+  const done = allTasks.filter(t => t.status === 'annotated').length;
+  const pending = total - done;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-done').textContent = done;
+  document.getElementById('stat-pending').textContent = pending;
+  document.getElementById('progress-text').textContent =
+    `${done} z ${total} zanotowanych`;
+  const pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// ── Task list ──────────────────────────────────────────────────────────────────
+function renderTaskList() {
+  const list = document.getElementById('task-list');
+  if (filteredTasks.length === 0) {
+    list.innerHTML = '<div style="padding:16px; font-size:13px; color:#6e7681; text-align:center;">Brak zadań.<br><button class="btn-secondary" style="margin-top:8px;" onclick="generateTasks()">Generuj zadania</button></div>';
+    return;
+  }
+  list.innerHTML = filteredTasks.map((t, i) => {
+    const isDone = t.status === 'annotated';
+    const typeClass = 'type-' + (t.current_type || 'other').replace(/[^a-z]/g, '');
+    return `
+      <div class="task-item${isDone ? ' done' : ''}" id="task-item-${i}" onclick="selectTask(${i})">
+        <div class="task-name">${escHtml(t.entity_name || t.task_id)}</div>
+        <div class="task-meta">
+          <span class="type-badge ${typeClass}">${escHtml(t.current_type || '?')}</span>
+          ${isDone ? '<span class="done-badge">✓</span>' : ''}
+          <span>${(t.mention_count || 0).toLocaleString()} wzm.</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ── Select task ────────────────────────────────────────────────────────────────
+function selectTask(index) {
+  currentIndex = index;
+  const task = filteredTasks[index];
+  if (!task) return;
+
+  // Highlight in sidebar
+  document.querySelectorAll('.task-item').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+  });
+
+  // Scroll into view
+  const el = document.getElementById('task-item-' + index);
+  if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+  // Hide empty state, show task detail
+  document.getElementById('empty-state').style.display = 'none';
+  const detail = document.getElementById('task-detail');
+  detail.style.display = 'flex';
+
+  // Populate entity card
+  document.getElementById('ent-name').textContent = task.entity_name || task.task_id;
+  document.getElementById('ent-mentions').textContent = (task.mention_count || 0).toLocaleString() + ' wzmianek';
+  document.getElementById('ent-normalized').textContent = task.normalized ? '(' + task.normalized + ')' : '';
+  document.getElementById('ent-summary').textContent = task.summary || '—';
+
+  const typeBadge = document.getElementById('ent-type-badge');
+  typeBadge.textContent = task.current_type || '?';
+  typeBadge.className = 'type-badge type-' + (task.current_type || 'other');
+
+  // Aliases
+  const aliases = task.aliases || [];
+  const aSection = document.getElementById('aliases-section');
+  if (aliases.length > 0) {
+    aSection.style.display = '';
+    document.getElementById('ent-aliases').innerHTML =
+      aliases.map(a => `<span class="alias-chip">${escHtml(a)}</span>`).join('');
+  } else {
+    aSection.style.display = 'none';
+  }
+
+  // Boundaries
+  const bSection = document.getElementById('boundaries-section');
+  const boundaries = task.boundaries || '';
+  if (boundaries) {
+    bSection.style.display = '';
+    document.getElementById('ent-boundaries').textContent = boundaries;
+  } else {
+    bSection.style.display = 'none';
+  }
+
+  // Sources
+  const sources = task.evidence_sources || [];
+  const sSection = document.getElementById('sources-section');
+  if (sources.length > 0) {
+    sSection.style.display = '';
+    document.getElementById('ent-sources').innerHTML =
+      sources.map(s => escHtml(s)).join('<br>');
+  } else {
+    sSection.style.display = 'none';
+  }
+
+  // Reset form
+  resetForm();
+
+  // If already annotated, pre-fill
+  if (task.annotation) {
+    const ann = task.annotation;
+    const banner = document.getElementById('annotated-banner');
+    banner.classList.add('visible');
+    document.getElementById('prev-decision').textContent = ann.decision || '?';
+    const prevTypeSpan = document.getElementById('prev-type-span');
+    if (ann.entity_type && ann.decision === 'retype') {
+      prevTypeSpan.style.display = '';
+      document.getElementById('prev-type').textContent = ann.entity_type;
+    } else {
+      prevTypeSpan.style.display = 'none';
+    }
+    // Pre-select
+    if (ann.decision) selectDecision(ann.decision);
+    if (ann.entity_type) selectType(ann.entity_type);
+    if (ann.canonical_name) document.getElementById('canonical-input').value = ann.canonical_name;
+    if (ann.reason) document.getElementById('reason-input').value = ann.reason;
+  }
+
+  // Scroll card to top
+  document.getElementById('card-wrap').scrollTop = 0;
+}
+
+function showEmpty() {
+  document.getElementById('empty-state').style.display = 'flex';
+  document.getElementById('task-detail').style.display = 'none';
+}
+
+// ── Form helpers ───────────────────────────────────────────────────────────────
+function resetForm() {
+  selectedDecision = null;
+  selectedType = null;
+  document.querySelectorAll('.decision-btn').forEach(b => b.className = 'decision-btn');
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('retype-section').classList.remove('visible');
+  document.getElementById('canonical-wrap').classList.remove('visible');
+  document.getElementById('reason-input').value = '';
+  document.getElementById('canonical-input').value = '';
+  document.getElementById('save-btn').disabled = true;
+  document.getElementById('save-status').textContent = '';
+  document.getElementById('save-status').className = 'save-status';
+  document.getElementById('annotated-banner').classList.remove('visible');
+}
+
+function selectDecision(d) {
+  selectedDecision = d;
+  document.querySelectorAll('.decision-btn').forEach(b => {
+    b.className = 'decision-btn';
+    if (b.dataset.decision === d) b.className = 'decision-btn selected-' + d;
+  });
+  // Show/hide retype type selector
+  document.getElementById('retype-section').classList.toggle('visible', d === 'retype');
+  // Show canonical for alias/merge
+  document.getElementById('canonical-wrap').classList.toggle('visible', d === 'alias' || d === 'merge');
+  updateSaveBtn();
+
+  // Auto-save for decisions that need no extra input
+  if (d === 'verify' || d === 'reject' || d === 'unsure') {
+    setTimeout(() => {
+      if (selectedDecision === d) saveAnnotation();
+    }, 250);
+  }
+}
+
+function selectType(t) {
+  selectedType = t;
+  document.querySelectorAll('.type-btn').forEach(b => {
+    b.classList.toggle('selected', b.dataset.type === t);
+  });
+  updateSaveBtn();
+
+  // Auto-save once a type is picked (retype flow)
+  if (selectedDecision === 'retype') {
+    setTimeout(() => {
+      if (selectedDecision === 'retype' && selectedType === t) saveAnnotation();
+    }, 250);
+  }
+}
+
+function updateSaveBtn() {
+  const ok = selectedDecision && (selectedDecision !== 'retype' || selectedType);
+  document.getElementById('save-btn').disabled = !ok;
+}
+
+// ── Save ───────────────────────────────────────────────────────────────────────
+async function saveAnnotation() {
+  const task = filteredTasks[currentIndex];
+  if (!task || !selectedDecision) return;
+
+  const payload = {
+    decision: selectedDecision,
+    entity_type: selectedDecision === 'retype' ? selectedType : null,
+    canonical_name: document.getElementById('canonical-input').value.trim() || null,
+    reason: document.getElementById('reason-input').value.trim(),
+  };
+
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  const statusEl = document.getElementById('save-status');
+  statusEl.textContent = 'Zapisuję...';
+  statusEl.className = 'save-status';
+
+  try {
+    const res = await fetch('/api/annotations/tasks/' + encodeURIComponent(task.task_id), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
+    statusEl.textContent = '✓ Zapisano';
+    statusEl.className = 'save-status ok';
+
+    // Update local state
+    task.status = 'annotated';
+    task.annotation = data.annotation;
+
+    // Update the task list item styling
+    const listItem = document.getElementById('task-item-' + currentIndex);
+    if (listItem) listItem.classList.add('done');
+
+    // Update stats
+    // Refresh allTasks entry
+    const allIdx = allTasks.findIndex(t => t.task_id === task.task_id);
+    if (allIdx >= 0) { allTasks[allIdx].status = 'annotated'; allTasks[allIdx].annotation = data.annotation; }
+    updateStats();
+
+    // No auto-advance — user navigates manually with → or sidebar click
+
+  } catch (e) {
+    statusEl.textContent = '✗ Błąd: ' + e.message;
+    statusEl.className = 'save-status err';
+    btn.disabled = false;
+  }
+}
+
+function nextTask() {
+  if (currentIndex < filteredTasks.length - 1) {
+    selectTask(currentIndex + 1);
+  }
+}
+function prevTask() {
+  if (currentIndex > 0) {
+    selectTask(currentIndex - 1);
+  }
+}
+
+// ── Keyboard shortcuts ─────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  // Ignore when typing in inputs
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); saveAnnotation(); }
+    return;
+  }
+
+  if (e.key === 'ArrowRight' || e.key === 'l') { e.preventDefault(); nextTask(); return; }
+  if (e.key === 'ArrowLeft'  || e.key === 'h') { e.preventDefault(); prevTask(); return; }
+  if (e.key === 'Enter') { e.preventDefault(); saveAnnotation(); return; }
+  if (e.key === 'v' || e.key === 'V') { selectDecision('verify'); return; }
+  if (e.key === 'r' || e.key === 'R') { selectDecision('reject'); return; }
+  if (e.key === 't' || e.key === 'T') { selectDecision('retype'); return; }
+  if (e.key === 'u' || e.key === 'U') { selectDecision('unsure'); return; }
+  if (e.key === 'a' || e.key === 'A') { selectDecision('alias'); return; }
+  if (e.key === 'm' || e.key === 'M') { selectDecision('merge'); return; }
+});
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+function escHtml(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ── Start ──────────────────────────────────────────────────────────────────────
+boot();
+</script>
+</body>
+</html>

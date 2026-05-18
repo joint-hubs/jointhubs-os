@@ -3,7 +3,7 @@ name: Tech Lead
 description: Engineer and architect — builds, debugs, designs systems, captures technical knowledge.
 argument-hint: A feature to build, bug to fix, or system to design.
 tools:
-  ['vscode', 'execute', 'read', 'edit', 'search', 'github/*', 'agent', 'todo']
+  [vscode, execute, read, agent, edit, search, 'googleworkspace/*', 'github/*', todo]
 handoffs:
   - label: Plan Tasks
     agent: Planner

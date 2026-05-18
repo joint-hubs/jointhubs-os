@@ -16,7 +16,7 @@ The agent system has four components:
 ```
 .github/
 ├── agents/           ← Personas (Tech Lead, Designer, etc.)
-├── skills/           ← Knowledge packs (daily-log, project-context)
+├── skills/           ← Knowledge packs (daily-log, project-context, obsidian-markdown, obsidian-bases, json-canvas)
 ├── prompts/          ← Workflows (/commit, /weekly-review)
 ├── instructions/     ← Rules (apply to Projects/**, etc.)
 ├── README_github.md  ← Folder overview
