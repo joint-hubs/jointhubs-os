@@ -22,7 +22,6 @@ Agent Skills are folders of instructions and resources that AI agents load on-de
 | [obsidian-bases](obsidian-bases/) | Obsidian Bases (.base files) | "bases", "table view", "card view", "filter notes" |
 | [json-canvas](json-canvas/) | JSON Canvas (.canvas files) | "canvas", "mind map", "flowchart", "visual canvas" |
 | [obsidian-cli](obsidian-cli/) | Obsidian CLI vault operations | "obsidian cli", "vault from terminal", "plugin dev" |
-| [defuddle](defuddle/) | Extract clean markdown from web pages | "parse url", "read article", "scrape page" |
 | [firecrawl](firecrawl/) | Managed markdown-first crawling and site mapping | "firecrawl", "crawl docs", "scrape website to markdown" |
 | [design-review](design-review/) | Product and UX critique | "review design", "check accessibility" |
 | [strategic-thinking](strategic-thinking/) | Decision frameworks and trade-offs | "options", "decision", "trade-offs" |
@@ -40,7 +39,6 @@ These are useful but more specialized than the vault conventions and session-tra
 | [obsidian-bases](obsidian-bases/) | Obsidian Bases (.base files) with views and formulas |
 | [json-canvas](json-canvas/) | JSON Canvas (.canvas files) for visual thinking |
 | [obsidian-cli](obsidian-cli/) | Obsidian CLI for vault operations and plugin dev |
-| [defuddle](defuddle/) | Clean web content extraction via CLI |
 | [firecrawl](firecrawl/) | Managed markdown-first scraping, crawling, and site mapping |
 | [agentic-engineering](agentic-engineering/) | Building and evolving the agent system |
 | [design-review](design-review/) | Product and UX critique |

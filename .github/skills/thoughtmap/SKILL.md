@@ -13,11 +13,20 @@ ThoughtMap is a personal knowledge pipeline that extracts, embeds, clusters, and
 
 ## When to Use
 
-- **Finding context** → Use `search_thoughts` MCP tool before reading files manually
+- **Finding context for non-trivial work** → route cheaply through `thoughtmap-out`, then use MCP for semantic grounding
 - **Understanding what topics exist** → Use `list_clusters` to see the landscape
 - **Exploring a specific topic** → Use `get_cluster` to see representative texts
 - **Measuring topic relationships** → Use `cluster_distances` or `text_distance`
 - **Interpreting pipeline output** → Read this skill for file format reference
+
+## Routing Model
+
+ThoughtMap has two complementary layers:
+
+- **`thoughtmap-out`** is the cheap router. Use it to identify the right project, entity, topic, or cluster quickly.
+- **ThoughtMap MCP** is the grounding layer. Use it to determine what is currently most relevant, what remains open, and which source files deserve closer reading.
+
+Do not treat MCP as a fallback only when static notes fail. For strategic, relational, or status-oriented tasks, use MCP after cheap routing even when static notes exist.
 
 ## Data Sources
 
@@ -126,11 +135,21 @@ Each domain file lists clusters belonging to that domain with:
 
 ### When gathering context for a task:
 
-1. **Start with MCP**: `search_thoughts("the topic")` — fast, semantic, covers all sources
-2. **Check clusters**: `list_clusters(domain="relevant")` — see if there's an organized topic group
-3. **Drill into cluster**: `get_cluster(id)` — read representative texts
-4. **Read source files**: Follow `source_file` paths from search results to read full documents
-5. **Cross-reference**: Use graphify if the project has a `graphify-out/` for structural context
+1. **Extract anchors**: people, projects, topics, decisions from the user's request
+2. **Route cheaply first**: read `REPORT.md`, the relevant entity note, topic note, or project `CONTEXT.md`
+3. **Run a short MCP bundle**:
+  - the user's exact phrasing
+  - `"<anchor> current status"`
+  - `"<anchor> open questions"` or `"<anchor> next step"`
+4. **Keep strong hits**: prefer results with distance < 0.40 when possible
+5. **Read source files**: follow the top 1-2 `source_file` paths behind the best hits
+6. **Build a compact context pack**:
+  - Prior decisions
+  - Open threads
+  - Reusable assets
+  - Freshest relevant source
+  - Gaps / conflicts
+7. **Continue the task from the context pack**, not from raw search output
 
 ### When analyzing thinking patterns:
 
@@ -144,6 +163,7 @@ Each domain file lists clusters belonging to that domain with:
 - You need to search across all data sources at once
 - You want to understand topic relationships
 - The user asks "what do I know about X" or "what have I been thinking about"
+- The task is strategic, relational, or status-oriented and static notes alone are not enough
 
 ### Prefer grep_search / file_search when:
 

@@ -95,5 +95,4 @@ Firecrawl is a remote service. Only use it for data you are comfortable sending 
 
 ## Related Skills
 
-- [defuddle](../defuddle/SKILL.md) — clean single-page extraction from standard web pages
 - [agentic-engineering](../agentic-engineering/SKILL.md) — packaging repeatable agent workflows

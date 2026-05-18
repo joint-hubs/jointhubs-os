@@ -10,13 +10,18 @@ applyTo: "Second Brain/Operations/thoughtmap-out/**"
 
 ThoughtMap output is an auto-generated semantic map of the user's entire knowledge base — daily notes, project docs, voice transcripts, and reviews. Use it as a context index to understand topics, entities, and relationships before diving into source material.
 
+Treat it as a **router**, not the final layer of understanding. Its job is to tell the agent where to look next at low cost.
+
 ## Core Rule
 
 ThoughtMap output is a **derived index**, not the source of truth.
 
 - Use it to discover what topics exist and how they relate
+- Use it to choose the right next MCP query or source file, not to end the reasoning process on its own
 - Use source files to confirm details before making claims or edits
 - If output and source files disagree, trust the source files
+
+For non-trivial strategic, relational, or status questions, do cheap routing here first and then hand off to ThoughtMap MCP for semantic grounding.
 
 ## Entry Points
 
@@ -99,6 +104,7 @@ Entity Area Context describes where the entity sits in the embedding space:
 1. Read `REPORT.md` → God Nodes section
 2. Check top entities by mention count
 3. Scan topic notes for the largest clusters
+4. If the question is about current direction, status, or priority, run a short MCP bundle before answering
 
 ### For entity questions ("who is X?" / "what is project Y?")
 1. Open `entities/{type}/{slug}.md`
@@ -106,12 +112,24 @@ Entity Area Context describes where the entity sits in the embedding space:
 3. Check Area Context for scope and positioning
 4. Follow cluster links to topic notes for deeper context
 5. Read source files listed at the bottom for ground truth
+6. For active-work questions, run MCP queries such as `"<entity> current status"` or `"<entity> open questions"`
 
 ### For topic exploration ("what topics relate to X?")
 1. Open the relevant `topics/{slug}.md`
 2. Follow Related Topics links (sorted by similarity)
 3. Check the mega-topic for the broader category
 4. Cross-reference with entity notes for key people/projects in that topic
+5. Use MCP relationally when needed: `get_cluster`, `cluster_distances`, and `text_distance` are the next step after static routing
+
+## Hand-off Pattern
+
+After using `thoughtmap-out` to find the right area, build a small semantic grounding bundle:
+
+1. The user's exact phrasing
+2. `"<anchor> current status"`
+3. `"<anchor> open questions"` or `"<anchor> next step"`
+
+Then keep the best hits, read the top 1-2 backing source files, and continue using a compact context pack instead of raw search results.
 
 ### For cross-domain discovery
 1. Read Bridge Thoughts in `REPORT.md`

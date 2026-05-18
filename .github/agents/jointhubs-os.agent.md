@@ -2,7 +2,7 @@
 name: jointhubs-os
 description: Deep-work agent for the jointhubs-os repository, with note maintenance, project context loading, and ThoughtMap-aware navigation.
 tools:
-  [vscode, execute, read, edit, search, agent, 'thoughtmap/*', todo]
+  [vscode, execute, read, agent, edit, search, web, 'thoughtmap/*', 'io.github.tavily-ai/tavily-mcp/*', todo]
 handoffs:
   - label: Build Or Debug
     agent: Tech Lead
@@ -13,9 +13,6 @@ handoffs:
   - label: Reflect And Synthesize
     agent: Journal
     prompt: Hand off when the work needs reflection, weekly synthesis, or pattern recognition.
-  - label: Decide In Mateusz Voice
-    agent: Agent M
-    prompt: Hand off when the user needs Mateusz's point of view, tradeoff judgment, or wording.
 ---
 
 # jointhubs-os Agent

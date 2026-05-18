@@ -53,7 +53,6 @@ These shared skills currently exist in this repo and should be reused before cre
 | `obsidian-bases` | Creating or editing `.base` files with filters, views, formulas |
 | `json-canvas` | Creating or editing `.canvas` files |
 | `obsidian-cli` | Operating a running Obsidian vault via CLI, plugin/theme dev |
-| `defuddle` | Turning web pages into clean markdown |
 | `design-review` | UX critique and accessibility review |
 | `strategic-thinking` | Decision framing and trade-offs |
 | `travel-research` | Travel comparison and itinerary research |
