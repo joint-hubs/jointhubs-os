@@ -4,11 +4,15 @@
 
 Prompt files are reusable, on-demand prompts for common development workflows.
 
+Files ending in `.prompt.md` are VS Code slash prompts.
+Files ending in `-prompt.md` are scheduler or copy-paste prompts for Claude / Cloud Desktop automation.
+
 ## Shared vs Local
 
 - Shared prompts that are safe to commit live directly in `.github/prompts/`
 - Private or experimental prompts should live in `.github/prompts/local/`
 - `.github/prompts/local/` is ignored by git, so personal workflows can stay local
+- If a prompt references a real person, private project context, or absolute machine paths, it is local-only until generalized
 
 ## How to Use
 
@@ -18,6 +22,15 @@ Type `/` in chat followed by the prompt name:
 - `/weekly-review` — Friday synthesis
 
 ## Available Prompts
+
+### Automation / Scheduler
+
+| Prompt | Purpose | Best Time |
+|--------|---------|-----------|
+| [daily-review-prompt](daily-review-prompt.md) | End-of-day review for Claude scheduled task | Evening |
+| [daily-kanban-prompt](daily-kanban-prompt.md) | Sync the Second Brain Kanban board from reviews and open tasks | Morning / after daily review |
+| [weekly-review-prompt](weekly-review-prompt.md) | Weekly retrospective for Claude scheduled task | Sunday |
+| [project-status-prompt](project-status-prompt.md) | Scheduled project status snapshot | Planning / automation |
 
 ### Session Management
 

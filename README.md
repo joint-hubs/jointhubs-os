@@ -16,6 +16,8 @@ But you can't *see* them. You know the insight is in there somewhere. You just d
 
 The whole thing runs locally. Your notes stay on your machine. ThoughtMap uses Ollama for embeddings — no cloud calls unless you opt in.
 
+It is already useful before the system is "finished". Even in its current state, the stack can turn daily notes, reviews, and voice transcripts into a working planning surface: recurring reviews, entity tracking, project memory, and a map of what keeps showing up across your week.
+
 ---
 
 ## What does ThoughtMap actually show you?
@@ -131,6 +133,33 @@ docker compose up --build     # open http://localhost:8585
 - **Copilot is separate** — VS Code Copilot sends context to cloud model providers, but the ThoughtMap pipeline itself does not
 - **One CDN request** — the visualization loads `vis-network.js` from CDN (vendorable)
 
+## Public-Safe Fork Workflow
+
+If you want to use this repo as your own operating system and still contribute upstream, keep a hard boundary between `shared framework` and `personal operating data`.
+
+**Safe to commit upstream:**
+- framework code, docs, templates, shared prompts, shared agents, shared skills
+- generic examples that do not reference real people, private projects, or local machine paths
+
+**Keep local only:**
+- personal notes and journals
+- communication logs, daily execution boards, generated reviews, and ThoughtMap output built from your own notes
+- machine-specific prompts, instructions, and experiments in `.github/*/local/`
+
+Recommended flow:
+
+1. Commit only public-safe files to your fork.
+2. Push your branch or `main` to `origin`.
+3. Open a Pull Request from your fork into `upstream`.
+4. Keep personal workflows and note content in ignored paths or local-only prompt/instruction folders.
+
+Before pushing, run a quick audit:
+
+```bash
+git status --short --ignored
+git diff --cached
+```
+
 ---
 
 ## Customization
@@ -139,6 +168,8 @@ The vault structure (`Operations / Personal / Projects`) is the backbone — age
 
 You can freely add agents, skills, prompts, and instructions. Every layer has a `local/` subfolder for private files that won't be committed:
 - `.github/agents/local/` · `.github/skills/local/` · `.github/prompts/local/` · `.github/instructions/local/`
+
+If a workflow includes your real name, private contacts, or absolute file-system paths, treat it as local by default and move it under the matching `local/` folder before opening a PR.
 
 When you change your note conventions, update the matching skill so agents can still find things. See [Second Brain README](Second%20Brain/README.md) for details.
 
