@@ -1,9 +1,5 @@
 # Jointhubs OS
 
-<p align="center">
-  <img src=".github/assets/jointhubs.png" alt="Jointhubs OS" width="450">
-</p>
-
 You write notes every day. Meeting notes, project decisions, late-night ideas, health logs, financial tracking. Over months and years, it adds up — hundreds of files, thousands of thoughts.
 
 But you can't *see* them. You know the insight is in there somewhere. You just don't know where, or what connects to what.
@@ -70,7 +66,7 @@ Taxonomy puts the **topic tree** and the **entity roots** side by side. Glossary
 
 Together those six views give you the full loop: **shape of the brain → branch of the brain → what's live right now → recurring thoughts → entities → consistency check.** Run it nightly and the map evolves with you.
 
-**ThoughtMap maps whatever you point it at.** By default it reads the notes in this repo. But you can plug in your existing Obsidian vault, a folder of markdown files, or [Wispr Flow](https://wispr.flow) voice transcripts — ThoughtMap picks up all three and merges them into one unified map.
+**ThoughtMap maps whatever you point it at.** By default it reads the notes in this repo. But you can plug in your existing Obsidian vault, a folder of markdown files, or [Wispr Flow](https://wisprflow.ai/) voice transcripts — ThoughtMap picks up all three and merges them into one unified map.
 
 > **Set up and run ThoughtMap** → [ThoughtMap README](Second%20Brain/Projects/thoughtmap/README.md)
 
