@@ -1,16 +1,19 @@
-# Jointhubs OS
+Dear note takers,
 
-You write notes every day. Meeting notes, project decisions, late-night ideas, health logs, financial tracking. Over months and years, it adds up — hundreds of files, thousands of thoughts.
+I'd like to present AI-first data model
 
-But you can't *see* them. You know the insight is in there somewhere. You just don't know where, or what connects to what.
+if you understand these:
+- meeting notes - capturing contents during conversation
+- project decisions - capturing contexts of the thoughts and ideas
+- health logs - capturing contexts of healthy living
+- financial tracking - capturing contexts of wealthy living
+- brainstorming sessions - capturing contexts of any idea
 
-**Jointhubs OS** is an open-source system that turns your notes into something you can work with:
+Over months and years, it adds up. Hundreds of files, thousands of thoughts lost over time.
 
-1. **A Second Brain** — structured notes in Obsidian that agents can read and write
-2. **ThoughtMap** — a pipeline that embeds your notes, clusters them into topics, and generates an interactive 2D map of everything you think about
-3. **AI agents** — specialized personas in VS Code Copilot that maintain context across sessions, using your notes as memory
+now you can track your thoughts
 
-The whole thing runs locally. Your notes stay on your machine. ThoughtMap uses Ollama for embeddings — no cloud calls unless you opt in.
+jointhubs-os runs the whole thing locally
 
 It is already useful before the system is "finished". Even in its current state, the stack can turn daily notes, reviews, and voice transcripts into a working planning surface: recurring reviews, entity tracking, project memory, and a map of what keeps showing up across your week.
 
@@ -18,15 +21,13 @@ It is already useful before the system is "finished". Even in its current state,
 
 ## What does ThoughtMap actually show you?
 
-ThoughtMap takes every note in your vault, splits it into chunks, embeds each chunk with a local model, and clusters them by meaning. The result is an interactive map of your own head that you can browse from the outside in.
+ThoughtMap takes every note in your filesystem, splits it into chunks, embeds each chunk with a local model, and clusters them by meaning. The result is an interactive map of your own head that you can browse from the outside in.
 
 ### 1. The whole brain, at a glance
 
 ![ThoughtMap — mega-topics map](.github/assets/High%20level.png)
 
-Every diamond is an **auto-generated mega-topic** built from your entire knowledge base — Obsidian notes, daily logs, voice transcripts, project docs — clustered purely from embedding similarity, not from tags or folders you maintained by hand. Size = how much you actually think about it. Edges = how often ideas bridge between two clusters.
-
-This is the first honest picture of what your notes are *about*, as opposed to what you tell yourself they're about.
+Every diamond is an **auto-generated mega-topic** built from my entire knowledge base — Obsidian notes, daily logs, voice transcripts, project docs — clustered purely from embedding similarity, not from tags or folders you maintained by hand. Size = how much you actually think about it. Edges = how often ideas bridge between two clusters.
 
 ### 2. Drill into one branch
 
@@ -64,9 +65,9 @@ Taxonomy puts the **topic tree** and the **entity roots** side by side. Glossary
 
 ---
 
-Together those six views give you the full loop: **shape of the brain → branch of the brain → what's live right now → recurring thoughts → entities → consistency check.** Run it nightly and the map evolves with you.
+Together those six views gave me the first Thought Model. It runs on my machine every day because i dont turn off the computer. And if im forced to do so i can just restart the containers. Its scheduled nightly.
 
-**ThoughtMap maps whatever you point it at.** By default it reads the notes in this repo. But you can plug in your existing Obsidian vault, a folder of markdown files, or [Wispr Flow](https://wisprflow.ai/) voice transcripts — ThoughtMap picks up all three and merges them into one unified map.
+**ThoughtMap maps whatever you point it at.** By default it reads the notes in this repo. But you can plug in your existing Obsidian vault, a folder of markdown files, or [Wispr Flow](https://wisprflow.ai/) voice transcripts — my ThoughtMap picks up all three and merges them into one unified map.
 
 > **Set up and run ThoughtMap** → [ThoughtMap README](Second%20Brain/Projects/thoughtmap/README.md)
 
@@ -87,7 +88,7 @@ Together those six views give you the full loop: **shape of the brain → branch
 │   │                                                 │   │
 │   │   Operations/  ── Personal/ ── Projects/        │   │
 │   │       │                           │             │   │
-│   │   thoughtmap-out/          thoughtmap/           │   │
+│   │   thoughtmap-out/          thoughtmap/          │   │
 │   │   (your map)               (the pipeline)       │   │
 │   └─────────────────────────────────────────────────┘   │
 │       │                                                 │
@@ -99,42 +100,14 @@ Together those six views give you the full loop: **shape of the brain → branch
 
 Agents maintain continuity through daily logs. They read yesterday's notes, pick up context, and keep working where you left off.
 
+But you should be the lead of the note.
 ---
 
 ## Explore the system
 
-The best way to understand Jointhubs OS is to walk through it. Each area has its own README that explains what it does and links to its neighbors.
-
-**Start here:** [Build your Second Brain →](Second%20Brain/README.md)
-
-### [Second Brain](Second%20Brain/README.md) — the knowledge layer
-
-Your notes, organized into three areas. This is where agents read and write. This is what ThoughtMap maps.
-- [Operations](Second%20Brain/Operations/README.md) — system output, daily journals, docs, ThoughtMap output
-- [Personal](Second%20Brain/Personal/README.md) — health, finances, events, learning
-- [Projects](Second%20Brain/Projects/README.md) — active work, each with a `CONTEXT.md`
-
-### [Agents](.github/agents/README.md) — who does the work
-
-Specialized AI personas you select in Copilot Chat. A Tech Lead thinks differently than a Journal agent. Each brings a distinct mindset.
-
-### [Skills](.github/skills/README.md) — what agents know
-
-Domain knowledge that agents load on demand. How to write daily logs, how to do weekly reviews, how to navigate your vault, how to query ThoughtMap.
-
-### [Prompts](.github/prompts/README.md) — one-command workflows
-
-Type `/daily-kickoff` or `/weekly-review` in Copilot Chat to run a full workflow in one shot.
-
-### [Instructions](.github/instructions/README.md) — rules by context
-
-Directory-scoped rules that activate automatically. Working in `Projects/`? Project rules apply. Working in `Health/`? Health rules apply.
-
-### [Automation](.github/automation/README.md) — scheduled pipelines
-
-ThoughtMap nightly, graphify weekly. Set up once, runs in the background.
-
----
+The best way to understand the repo is connect with creator.
+Mateusz Stachowicz
+https://www.linkedin.com/in/mtstch/
 
 ## Quick Start
 
