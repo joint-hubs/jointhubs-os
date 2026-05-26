@@ -22,16 +22,53 @@ It is already useful before the system is "finished". Even in its current state,
 
 ## What does ThoughtMap actually show you?
 
-ThoughtMap takes all your notes, splits them into chunks, embeds them with a local model, and clusters them by meaning. The output is an interactive HTML visualization where:
+ThoughtMap takes every note in your vault, splits it into chunks, embeds each chunk with a local model, and clusters them by meaning. The result is an interactive map of your own head that you can browse from the outside in.
 
-- **Clusters** are the topics you think about most — your "god nodes"
-- **Bridges** are ideas that connect otherwise separate topics
-- **Orphans** are thoughts that don't belong anywhere yet
-- **Entities** are people, projects, tools that appear across your knowledge base
+### 1. The whole brain, at a glance
 
-You see the shape of your thinking. Where you're deep, where you're shallow, what's connected, what's isolated.
+![ThoughtMap — mega-topics map](.github/assets/High%20level.png)
 
-Run it nightly and your map evolves with you.
+Every diamond is an **auto-generated mega-topic** built from your entire knowledge base — Obsidian notes, daily logs, voice transcripts, project docs — clustered purely from embedding similarity, not from tags or folders you maintained by hand. Size = how much you actually think about it. Edges = how often ideas bridge between two clusters.
+
+This is the first honest picture of what your notes are *about*, as opposed to what you tell yourself they're about.
+
+### 2. Drill into one branch
+
+![ThoughtMap — topics inside one mega-topic](.github/assets/mid%20level.png)
+
+Double-click a mega-topic and it opens into its individual topics, laid out by semantic proximity. The right-hand panel summarizes what the cluster is really covering. You can now see which topics are the gravitational center of a domain and which ones sit on its outer edge.
+
+### 3. What's hot *this month*
+
+![ThoughtMap — sub-topics filtered by the timeline](.github/assets/low%20level.png)
+
+Double-click again to enter a single topic, then flip the **timeline filter** to *This Month*. Only sub-topics with thoughts from the active time window stay solid — everything else dims out. The remaining lit-up node is, very literally, the hot topic of the month inside that branch of your brain.
+
+This is how ThoughtMap answers *"what am I actually working on right now, inside this domain?"* without you having to grep through daily notes.
+
+### 4. Echoes — the thoughts you keep having
+
+![ThoughtMap — echoes panel](.github/assets/echoes.png)
+
+Echoes are **near-duplicate thought groups**: distinct chunks that say roughly the same thing, grouped by embedding similarity. Each group shows how many times the idea recurred, how tightly it clusters, and the date range it spans.
+
+Use it to spot templates you should extract, ideas you keep re-deriving without ever writing them down properly, and noise you can mark *Discard* so future runs ignore it.
+
+### 5. Glossary — does the model actually understand you?
+
+![ThoughtMap — glossary of entities](.github/assets/glossary.png)
+
+The Glossary lists every **entity** ThoughtMap extracted — projects, organizations, people, locations, tools — with mention counts, topic reach, a short auto-generated summary, and source files. Its job is **trust verification**: if the cards look right to you at a glance, the pipeline understood your knowledge base. If they look wrong, that's a signal the upstream extraction stages need attention.
+
+### 6. Taxonomy — the same check, from the other side
+
+![ThoughtMap — taxonomy view](.github/assets/taxonomy.png)
+
+Taxonomy puts the **topic tree** and the **entity roots** side by side. Glossary asks "are the entities correct?"; Taxonomy asks "do the topics and the entities line up against each other the way they should?" Together they let you sanity-check the entire map by eye.
+
+---
+
+Together those six views give you the full loop: **shape of the brain → branch of the brain → what's live right now → recurring thoughts → entities → consistency check.** Run it nightly and the map evolves with you.
 
 **ThoughtMap maps whatever you point it at.** By default it reads the notes in this repo. But you can plug in your existing Obsidian vault, a folder of markdown files, or [Wispr Flow](https://wispr.flow) voice transcripts — ThoughtMap picks up all three and merges them into one unified map.
 

@@ -28,6 +28,79 @@ docker compose up --build
 
 The app shows a loading page while the pipeline runs (~1-2 min on first start including model download), then automatically redirects to the interactive visualization.
 
+## Walkthrough — How To Read The UI
+
+ThoughtMap is designed to be browsed from the outside in: start with the whole vault as a shape, drill into one cluster, then into a single topic, then verify the model's understanding through three orthogonal lenses (Echoes, Glossary, Taxonomy).
+
+### 1. Map — Mega-Topics (high level)
+
+![Mega-topics map](../../../.github/assets/High%20level.png)
+
+This is the entry view. Every diamond is an **auto-generated mega-topic** built from your entire knowledge base — Obsidian notes, daily logs, Wispr Flow dictations, and project docs — clustered purely from embedding similarity, not from tags or folders.
+
+- Diamond **size** = number of thoughts assigned to that mega-topic
+- **Edges** show inter-cluster similarity (label is the bridging-thought count)
+- The legend on the right ranks mega-topics by thought volume
+
+Reading: "AI Workflow & Practice (2354)" and "Productivity & Systems (1154)" dominate everything else — that is what this brain has actually been doing, not what it claims to be doing.
+
+**Double-click a diamond** to drop one level down.
+
+### 2. Map — Topics inside one mega-topic (mid level)
+
+![AI Workflow & Practice topics](../../../.github/assets/mid%20level.png)
+
+Same canvas, one level deeper. The 32 topics inside *AI Workflow & Practice* are now nodes, sized by thought count and laid out by semantic proximity. The right-side info panel summarizes what the cluster is actually about — in this case practical LLM workflows, prompting strategy, agent design, and documenting the development process.
+
+This is the level where a mega-topic becomes a useful map: you can see that *LLM Agent Workflow & Tools (183)* and *AI Prompt Engineering & Strategy (142)* are the gravitational centers, while *Sim-to-Real Transfer in RL (59)* sits on the outer edge of the same cluster.
+
+**Double-click a topic** to enter a single topic's interior.
+
+### 3. Map — Hot topic of the month (low level + timeline)
+
+![LLM Agent Workflow sub-topics, filtered to This Month](../../../.github/assets/low%20level.png)
+
+Inside a topic you see its **sub-topics**, but now the **timeline filter** (top-right, here set to *This Month*) is doing real work: only sub-topics with at least one thought from the active time window stay solid; everything else dims out.
+
+The single red node — *Rejestr / Krs / Źródło (1 \| d:6.69)* — is the only sub-topic of *LLM Agent Workflow & Tools* that the current month actually touched. That is the **hot topic of the month** for this branch of the brain. Everything else is structural memory, not current activity.
+
+This is how ThoughtMap answers "what am I actually working on right now, inside this domain?" without you having to grep daily notes.
+
+### 4. Echoes — recurring thoughts across time
+
+![Echoes panel](../../../.github/assets/echoes.png)
+
+Echoes are **near-duplicate thought groups**: distinct chunks that say roughly the same thing, grouped by embedding similarity above a configurable threshold (here `min sim = 0.89`, `min size = 5`).
+
+Each group shows how many times the idea recurred, the average and minimum similarity inside the group, and the date range it spans. The example group of 7 thoughts is the same reflection-and-planning template echoing across a month of daily notes.
+
+Use this to spot:
+- templates and boilerplate that should be extracted
+- ideas you keep re-deriving without ever writing them down properly
+- noise you can mark as *Discard* so future runs ignore it
+
+The *Observe / Discard / Neutral* buttons feed curation back into the pipeline.
+
+### 5. Glossary — entities, sanity-checked by eye
+
+![Glossary cards](../../../.github/assets/glossary.png)
+
+The Glossary lists every **entity** ThoughtMap extracted from the corpus — projects, organizations, people, locations, tools — with the number of mentions, the number of topics it appears in, a short auto-generated summary, and its source files.
+
+Glossary exists for one reason: **trust verification**. If the entity cards on this page look right to you at a glance, the extraction pipeline understood your knowledge base. If they look wrong — wrong type, duplicate names, missing aliases — that is a signal the upstream NER/condensation stages need attention.
+
+### 6. Taxonomy — the same check, from the other direction
+
+![Taxonomy view](../../../.github/assets/taxonomy.png)
+
+Taxonomy shows the **topic tree** (left) and the **entity roots** (right) side by side. It is the second verification surface: Glossary asks "are the entities correct?", Taxonomy asks "do the topic groupings and entity reach look correct against each other?"
+
+If a mega-topic should obviously contain a given entity and it doesn't, or if an entity's `topics` count looks inflated, you find it here.
+
+---
+
+Together those six views give you the full loop: **shape of the brain → branch of the brain → live activity in one branch → recurring thoughts → entities → topic/entity consistency check.**
+
 ## Privacy & Data
 
 - **ThoughtMap runs locally by default**: embeddings, clustering, condensation, and entity summaries use Ollama on your machine
