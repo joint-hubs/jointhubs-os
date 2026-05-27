@@ -19,9 +19,9 @@ It is already useful before the system is "finished". Even in its current state,
 
 ---
 
-## What does ThoughtMap actually show you?
+## What does jointhubs-os actually show you?
 
-ThoughtMap takes every note in your filesystem, splits it into chunks, embeds each chunk with a local model, and clusters them by meaning. The result is an interactive map of your own head that you can browse from the outside in.
+It takes every note in your filesystem, splits it into chunks, embeds each chunk with a local model, and clusters them by meaning. The result is an interactive map of your own head that you can browse from the outside in.
 
 ### 1. The whole brain, at a glance
 
