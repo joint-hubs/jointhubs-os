@@ -4,10 +4,10 @@ I'd like to present AI-first data model
 
 if you understand these:
 - meeting notes - capturing contents during conversation
-- project decisions - capturing contexts of the thoughts and ideas
-- health logs - capturing contexts of healthy living
-- financial tracking - capturing contexts of wealthy living
-- brainstorming sessions - capturing contexts of any idea
+- project notes - capturing contexts of the thoughts and ideas
+- health and ai gym bro notes - capturing contexts of healthy living
+- finance notes - capturing contexts of wealthy living
+- brainstorming sessions notes - capturing contexts of any idea
 
 Over months and years, it adds up. Hundreds of files, thousands of thoughts lost over time.
 
